@@ -66,15 +66,36 @@ void FFTperformer::copyToFFTBuffer()
 
 void FFTperformer::paint(Graphics& g)
 {
-    for (int i = 1; i < scopeSize; ++i)
-    {
-        auto width = getLocalBounds().getWidth();
-        auto height = getLocalBounds().getHeight();
+    Path area;
+    g.setColour(Colours::white);
+    auto width = getLocalBounds().getWidth();
+    auto height = getLocalBounds().getHeight();
 
-        g.drawLine({ (float)juce::jmap(i - 1, 0, scopeSize - 1, 0, width),
-                              juce::jmap(scopeData[i - 1], 0.0f, 1.0f, (float)height, 0.0f),
-                      (float)juce::jmap(i,     0, scopeSize - 1, 0, width),
-                              juce::jmap(scopeData[i],     0.0f, 1.0f, (float)height, 0.0f) });
+    Point<float> initP(0, height);
+
+    area.startNewSubPath(initP);
+    area.lineTo(0, height);
+    for (int i = 3; i < scopeSize; ++i)
+    {
+        
+        area.quadraticTo(
+            (float)jmap(i - 4, 0, scopeSize - 1, 0, width),
+            jmap(scopeData[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
+            (float)jmap(i, 0, scopeSize - 1, 0, width),
+            jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)
+            );
+
+        //area.lineTo((float)jmap(i, 0, scopeSize - 1, 0, width),
+          //                 jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f));
+        /*
+        g.drawLine({ (float)jmap(i - 1, 0, scopeSize - 1, 0, width),
+                            jmap(scopeData[i - 1], 0.0f, 1.0f, (float)height, 0.0f),
+                     (float)jmap(i,     0, scopeSize - 1, 0, width),
+                            jmap(scopeData[i],     0.0f, 1.0f, (float)height, 0.0f) });*/
     }
+
+    area.lineTo(width, height);
+    area.lineTo(0, height);
+    g.fillPath(area);
 }
 

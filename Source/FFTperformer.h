@@ -1,6 +1,7 @@
 #pragma once
 #include <JuceHeader.h> 
-#include "CircularBuffer.h" 
+#include "CircularBuffer.h"
+#include "spline.h"
 
 #define fftOrder	11
 #define fftSize		(1 << fftOrder)
@@ -35,6 +36,10 @@ private:
     CircularBuffer* processorData;
     //AudioBuffer<float> fftBuffer;
     Atomic<bool>* bufferCopied;
+
+
+    std::vector<double> X, Y;
+
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FFTperformer)
 
