@@ -7,6 +7,8 @@ FFTperformer::FFTperformer()
     startTimerHz(FPS);
     fftData.setSize(1, 2 * fftSize);
     fftData.clear();
+
+    alpha = exp(-1.0f / (FPS * RELEASE_TIME));
 }
 
 FFTperformer::~FFTperformer()
@@ -71,29 +73,21 @@ void FFTperformer::paint(Graphics& g)
     auto width = getLocalBounds().getWidth();
     auto height = getLocalBounds().getHeight();
 
-    Point<float> initP(0, height);
-
-    area.startNewSubPath(initP);
-    area.lineTo(0, height);
-    for (int i = 3; i < scopeSize; ++i)
+    for (int i = 0; i < scopeSize; ++i)
     {
-        
-        area.quadraticTo(
-            (float)jmap(i - 4, 0, scopeSize - 1, 0, width),
-            jmap(scopeData[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
-            (float)jmap(i, 0, scopeSize - 1, 0, width),
-            jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)
-            );
-
-        //area.lineTo((float)jmap(i, 0, scopeSize - 1, 0, width),
-          //                 jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f));
-        /*
-        g.drawLine({ (float)jmap(i - 1, 0, scopeSize - 1, 0, width),
-                            jmap(scopeData[i - 1], 0.0f, 1.0f, (float)height, 0.0f),
-                     (float)jmap(i,     0, scopeSize - 1, 0, width),
-                            jmap(scopeData[i],     0.0f, 1.0f, (float)height, 0.0f) });*/
+        oldScopeData[i] *= alpha;
+        scopeData[i] = jmax(scopeData[i],oldScopeData[i]);
+        oldScopeData[i] = scopeData[i];
     }
 
+    Point<float> initP(0, height);
+    area.startNewSubPath(initP);
+    area.lineTo(0, height);
+    for (int i = 0; i < scopeSize; ++i)
+    {
+        area.lineTo((float)jmap(i, 0, scopeSize - 1, 0, width),
+                           jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f));
+    }
     area.lineTo(width, height);
     area.lineTo(0, height);
     g.fillPath(area);

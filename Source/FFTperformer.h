@@ -1,12 +1,12 @@
 #pragma once
 #include <JuceHeader.h> 
 #include "CircularBuffer.h"
-#include "spline.h"
 
-#define fftOrder	11
-#define fftSize		(1 << fftOrder)
-#define scopeSize	512
-#define FPS			25
+#define fftOrder	    11
+#define fftSize		    (1 << fftOrder)
+#define scopeSize	    512
+#define FPS			    25
+#define RELEASE_TIME    1.0f
 
 class FFTperformer : public Component, public Timer
 {
@@ -37,9 +37,8 @@ private:
     //AudioBuffer<float> fftBuffer;
     Atomic<bool>* bufferCopied;
 
-
-    std::vector<double> X, Y;
-
+    float alpha;
+    float oldScopeData[scopeSize];
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FFTperformer)
 
