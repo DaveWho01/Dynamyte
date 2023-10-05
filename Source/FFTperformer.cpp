@@ -54,22 +54,14 @@ void FFTperformer::copyToFFTBuffer()
     {
         bufferCopied->set(false);
         processorData->getData(0, fftData, 2048);
-        //if (processorData->channels == 2)
-        //{
-        //    processorData->getData(1, fftTemp, 2048);
-        //    for (int smp = 0; smp < 2048; ++smp)
-        //    {
-        //        fftData[smp] = (fftData[smp] + fftTemp[smp]) * 0.5f;
-        //    }
-        //}
         bufferCopied->set(true);
     }
 }
 
 void FFTperformer::paint(Graphics& g)
 {
-    Path area;
-    g.setColour(Colours::white);
+    Path area, line;
+
     auto width = getLocalBounds().getWidth();
     auto height = getLocalBounds().getHeight();
 
@@ -83,13 +75,22 @@ void FFTperformer::paint(Graphics& g)
     Point<float> initP(0, height);
     area.startNewSubPath(initP);
     area.lineTo(0, height);
-    for (int i = 0; i < scopeSize; ++i)
-    {
-        area.lineTo((float)jmap(i, 0, scopeSize - 1, 0, width),
-                           jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f));
+    for (int i = 4; i < scopeSize; i+=6)
+    {            
+        area.cubicTo(
+            (float)jmap(i - 4, 0, scopeSize - 1, 0, width), jmap(scopeData[i - 4], 0.0f, 1.0f, (float)height, 0.0f),
+            (float)jmap(i - 2, 0, scopeSize - 1, 0, width), jmap(scopeData[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
+            (float)jmap(i, 0, scopeSize - 1, 0, width), jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)
+        );
     }
     area.lineTo(width, height);
+    line = area;
     area.lineTo(0, height);
+    g.setColour(Colour::fromRGBA(167, 166, 195, 255));
+    g.setOpacity(0.3f);
     g.fillPath(area);
+    g.setColour(Colours::white);
+    g.setOpacity(1.0f);
+    g.strokePath(line, PathStrokeType(2.0f));
 }
 

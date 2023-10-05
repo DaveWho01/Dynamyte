@@ -28,7 +28,6 @@ void CircularBuffer::pushNextBlock(juce::AudioBuffer<float>& buffer)
     int numSamples = buffer.getNumSamples();
     int numChannels = buffer.getNumChannels();
     float gainToApply = (float)1 / (float)numChannels;
-    DBG(numChannels);
 
     for (int channel = 0; channel < numChannels; ++channel)
     {

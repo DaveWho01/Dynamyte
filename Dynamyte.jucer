@@ -6,7 +6,14 @@
               companyName="DaveWho">
   <MAINGROUP id="e1hwiK" name="Dynamyte">
     <GROUP id="{5CB7FF14-0A7E-5B78-DF45-557652E56EF3}" name="icons">
-      <FILE id="ij3qSd" name="save.svg" compile="0" resource="1" file="icons/save.svg"/>
+      <FILE id="DUwp0H" name="saveIcon.svg" compile="0" resource="1" file="icons/saveIcon.svg"/>
+      <FILE id="j5pZVg" name="loadIcon.svg" compile="0" resource="1" file="icons/loadIcon.svg"/>
+      <FILE id="dBJKEe" name="redoIcon.svg" compile="0" resource="1" file="icons/redoIcon.svg"/>
+      <FILE id="TWHJTV" name="undoIcon.svg" compile="0" resource="1" file="icons/undoIcon.svg"/>
+      <FILE id="Gt4JRK" name="nextPresetIcon.svg" compile="0" resource="1"
+            file="icons/nextPresetIcon.svg"/>
+      <FILE id="joixvO" name="prevPresetIcon.svg" compile="0" resource="1"
+            file="icons/prevPresetIcon.svg"/>
     </GROUP>
     <GROUP id="{99C7C12B-67C2-5643-824A-1A3EA9320495}" name="DSP">
       <GROUP id="{15382BAA-EC15-6E76-5B4B-00C24510F245}" name="Impactor">

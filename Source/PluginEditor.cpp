@@ -35,6 +35,18 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     //[/Constructor_pre]
 
+    spectrumGrid.reset (new SpectrumGrid());
+    addAndMakeVisible (spectrumGrid.get());
+    spectrumGrid->setName ("spectrumGrid");
+
+    spectrumGrid->setBounds (190, 64, 520, 270);
+
+    spectrumVisualizer.reset (new FFTperformer());
+    addAndMakeVisible (spectrumVisualizer.get());
+    spectrumVisualizer->setName ("spectrumVisualizer");
+
+    spectrumVisualizer->setBounds (190, 64, 520, 270);
+
     b1_attack.reset (new juce::Slider ("b1_attack"));
     addAndMakeVisible (b1_attack.get());
     b1_attack->setRange (0, 10, 0);
@@ -335,12 +347,6 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     highFreqSlider->setBounds (74, 217, 80, 80);
 
-    spectrumVisualizer.reset (new FFTperformer());
-    addAndMakeVisible (spectrumVisualizer.get());
-    spectrumVisualizer->setName ("spectrumVisualizer");
-
-    spectrumVisualizer->setBounds (190, 64, 520, 270);
-
     inputGainSlider.reset (new juce::Slider ("inputGainSlider"));
     addAndMakeVisible (inputGainSlider.get());
     inputGainSlider->setRange (0, 10, 0);
@@ -361,47 +367,6 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     outputGainSlider->setBounds (746, 217, 80, 80);
 
-    undoButton.reset (new juce::TextButton ("undoButton"));
-    addAndMakeVisible (undoButton.get());
-    undoButton->setButtonText (TRANS("UNDO"));
-    undoButton->addListener (this);
-
-    undoButton->setBounds (56, 8, 87, 48);
-
-    redoButton.reset (new juce::TextButton ("redoButton"));
-    addAndMakeVisible (redoButton.get());
-    redoButton->setButtonText (TRANS("REDO"));
-    redoButton->addListener (this);
-
-    redoButton->setBounds (152, 8, 87, 48);
-
-    loadPreset.reset (new juce::TextButton ("loadPreset"));
-    addAndMakeVisible (loadPreset.get());
-    loadPreset->setButtonText (TRANS("Load Preset"));
-    loadPreset->addListener (this);
-
-    loadPreset->setBounds (688, 8, 112, 40);
-
-    savePreset.reset (new SaveButton ("saveBTN"));
-    addAndMakeVisible (savePreset.get());
-    savePreset->setName ("savePreset");
-
-    savePreset->setBounds (301, 11, 38, 38);
-
-    nextPresetBtn.reset (new juce::TextButton ("nextPresetBtn"));
-    addAndMakeVisible (nextPresetBtn.get());
-    nextPresetBtn->setButtonText (TRANS(">"));
-    nextPresetBtn->addListener (this);
-
-    nextPresetBtn->setBounds (632, 8, 40, 40);
-
-    prevPresetBtn.reset (new juce::TextButton ("prevPresetBtn"));
-    addAndMakeVisible (prevPresetBtn.get());
-    prevPresetBtn->setButtonText (TRANS("<"));
-    prevPresetBtn->addListener (this);
-
-    prevPresetBtn->setBounds (360, 8, 40, 40);
-
     currentPresetLabel.reset (new juce::TextEditor ("currentPresetLabel"));
     addAndMakeVisible (currentPresetLabel.get());
     currentPresetLabel->setMultiLine (false);
@@ -411,15 +376,61 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     currentPresetLabel->setCaretVisible (false);
     currentPresetLabel->setPopupMenuEnabled (true);
     currentPresetLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00495358));
-    currentPresetLabel->setColour (juce::TextEditor::outlineColourId, juce::Colours::white);
+    currentPresetLabel->setColour (juce::TextEditor::outlineColourId, juce::Colour (0x00ffffff));
     currentPresetLabel->setText (juce::String());
 
-    currentPresetLabel->setBounds (416, 8, 200, 40);
+    currentPresetLabel->setBounds (590, 10, 200, 35);
+
+    savePresetBtn.reset (new IconButtons ("saveBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/saveIcon.svg", 60,60
+                                          ));
+    addAndMakeVisible (savePresetBtn.get());
+    savePresetBtn->setName ("savePresetBtn");
+
+    savePresetBtn->setBounds (424, 11, 38, 38);
+
+    undoBtn.reset (new IconButtons ("undoBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/undoIcon.svg", 60, 60));
+    addAndMakeVisible (undoBtn.get());
+    undoBtn->setName ("undoBtn");
+
+    undoBtn->setBounds (281, 11, 38, 38);
+
+    redoBtn.reset (new IconButtons ("redoBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/redoIcon.svg", 60, 60
+                                    ));
+    addAndMakeVisible (redoBtn.get());
+    redoBtn->setName ("redoBtn");
+
+    redoBtn->setBounds (337, 11, 38, 38);
+
+    loadPresetBtn.reset (new IconButtons ("loadBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/loadIcon.svg", 60,60
+                                          ));
+    addAndMakeVisible (loadPresetBtn.get());
+    loadPresetBtn->setName ("loadPresetBtn");
+
+    loadPresetBtn->setBounds (476, 11, 38, 38);
+
+    prevPresetBtn.reset (new IconButtons ("prevPresetBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/prevPresetIcon.svg", 40,40
+                                          ));
+    addAndMakeVisible (prevPresetBtn.get());
+    prevPresetBtn->setName ("prevPresetBtn");
+
+    prevPresetBtn->setBounds (544, 11, 38, 38);
+
+    nextPresetBtn.reset (new IconButtons ("nextPresetBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/nextPresetIcon.svg", 40,40
+                                          ));
+    addAndMakeVisible (nextPresetBtn.get());
+    nextPresetBtn->setName ("nextPresetBtn");
+
+    nextPresetBtn->setBounds (800, 11, 38, 38);
 
 
     //[UserPreSize]
 
-    savePreset->addListener(this);
+    savePresetBtn->addListener(this);
+    loadPresetBtn->addListener(this);
+    undoBtn->addListener(this);
+    redoBtn->addListener(this);
+    prevPresetBtn->addListener(this);
+    nextPresetBtn->addListener(this);
 
     // band 1
     b1_inputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::nameInputGain_1, *b1_inputGain));
@@ -528,6 +539,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     outputGainAttachment.reset(new SliderAttachment(valueTreeState, Parameters::nameGeneralOutputGain, *outputGainSlider));
 
     // preset management
+    currentPresetLabel->setJustification(Justification::centred);
     currentPresetLabel->setText(presetManager.getCurrentPreset());
 
     // spectrum
@@ -594,6 +606,8 @@ PluginEditor::~PluginEditor()
 
     //[/Destructor_pre]
 
+    spectrumGrid = nullptr;
+    spectrumVisualizer = nullptr;
     b1_attack = nullptr;
     b1_release = nullptr;
     b1_threshold = nullptr;
@@ -626,16 +640,15 @@ PluginEditor::~PluginEditor()
     b3_bypass = nullptr;
     lowFreqSlider = nullptr;
     highFreqSlider = nullptr;
-    spectrumVisualizer = nullptr;
     inputGainSlider = nullptr;
     outputGainSlider = nullptr;
-    undoButton = nullptr;
-    redoButton = nullptr;
-    loadPreset = nullptr;
-    savePreset = nullptr;
-    nextPresetBtn = nullptr;
-    prevPresetBtn = nullptr;
     currentPresetLabel = nullptr;
+    savePresetBtn = nullptr;
+    undoBtn = nullptr;
+    redoBtn = nullptr;
+    loadPresetBtn = nullptr;
+    prevPresetBtn = nullptr;
+    nextPresetBtn = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -648,11 +661,11 @@ void PluginEditor::paint (juce::Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (juce::Colour (0xff252453));
+    g.fillAll (juce::Colour (0xff0d0d1b));
 
     {
         int x = 47, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -660,8 +673,8 @@ void PluginEditor::paint (juce::Graphics& g)
                                              184.0f - 47.0f + x,
                                              472.0f - 344.0f + y,
                                              fillColour2,
-                                             368.0f - 47.0f + x,
-                                             288.0f - 344.0f + y,
+                                             328.0f - 47.0f + x,
+                                             344.0f - 344.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -791,16 +804,16 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 319, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             480.0f - 319.0f + x,
+                                             456.0f - 319.0f + x,
                                              472.0f - 344.0f + y,
                                              fillColour2,
-                                             672.0f - 319.0f + x,
-                                             288.0f - 344.0f + y,
+                                             592.0f - 319.0f + x,
+                                             344.0f - 344.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -930,16 +943,16 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 591, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d0d);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             776.0f - 591.0f + x,
-                                             480.0f - 344.0f + y,
+                                             720.0f - 591.0f + x,
+                                             472.0f - 344.0f + y,
                                              fillColour2,
-                                             960.0f - 591.0f + x,
-                                             296.0f - 344.0f + y,
+                                             584.0f - 591.0f + x,
+                                             312.0f - 344.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1069,7 +1082,7 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 47, y = 60, width = 133, height = 274;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1088,16 +1101,16 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 720, y = 60, width = 133, height = 274;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             120.0f - 720.0f + x,
-                                             200.0f - 60.0f + y,
+                                             784.0f - 720.0f + x,
+                                             192.0f - 60.0f + y,
                                              fillColour2,
-                                             184.0f - 720.0f + x,
-                                             56.0f - 60.0f + y,
+                                             856.0f - 720.0f + x,
+                                             48.0f - 60.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1154,21 +1167,172 @@ void PluginEditor::paint (juce::Graphics& g)
     }
 
     {
-        int x = 300, y = 10, width = 40, height = 40;
+        int x = 475, y = 10, width = 40, height = 40;
         juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             320.0f - 300.0f + x,
+                                             320.0f - 475.0f + x,
                                              32.0f - 10.0f + y,
                                              fillColour2,
-                                             328.0f - 300.0f + x,
+                                             328.0f - 475.0f + x,
                                              16.0f - 10.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
         g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 190, y = 64, width = 520, height = 270;
+        juce::Colour fillColour1 = juce::Colour (0xff0d0d1b), fillColour2 = juce::Colour (0xa9ffffff);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             450.0f - 190.0f + x,
+                                             200.0f - 64.0f + y,
+                                             fillColour2,
+                                             450.0f - 190.0f + x,
+                                             static_cast<float> (-300) - 64.0f + y,
+                                             false));
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 423, y = 10, width = 40, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             267.0f - 423.0f + x,
+                                             28.0f - 10.0f + y,
+                                             fillColour2,
+                                             277.0f - 423.0f + x,
+                                             19.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 280, y = 10, width = 40, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             267.0f - 280.0f + x,
+                                             28.0f - 10.0f + y,
+                                             fillColour2,
+                                             277.0f - 280.0f + x,
+                                             19.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 336, y = 10, width = 40, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             267.0f - 336.0f + x,
+                                             28.0f - 10.0f + y,
+                                             fillColour2,
+                                             277.0f - 336.0f + x,
+                                             19.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 543, y = 10, width = 40, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             320.0f - 543.0f + x,
+                                             32.0f - 10.0f + y,
+                                             fillColour2,
+                                             328.0f - 543.0f + x,
+                                             16.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 799, y = 10, width = 40, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             320.0f - 799.0f + x,
+                                             32.0f - 10.0f + y,
+                                             fillColour2,
+                                             328.0f - 799.0f + x,
+                                             16.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 590, y = 10, width = 200, height = 40;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff171730);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             320.0f - 590.0f + x,
+                                             32.0f - 10.0f + y,
+                                             fillColour2,
+                                             328.0f - 590.0f + x,
+                                             16.0f - 10.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 40, y = 10, width = 232, height = 38;
+        juce::String text (TRANS("DYNAMYTE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 43.30f, juce::Font::plain).withTypefaceStyle ("Bold").withExtraKerningFactor (0.044f));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 48, y = 11, width = 216, height = 38;
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 3);
 
     }
 
@@ -1370,24 +1534,34 @@ void PluginEditor::buttonClicked (juce::Button* buttonThatWasClicked)
         //[UserButtonCode_b3_bypass] -- add your button handler code here..
         //[/UserButtonCode_b3_bypass]
     }
-    else if (buttonThatWasClicked == undoButton.get())
+
+    //[UserbuttonClicked_Post]
+
+    else if (buttonThatWasClicked == savePresetBtn.get())
     {
-        //[UserButtonCode_undoButton] -- add your button handler code here..
-        valueTreeState.undoManager->undo();
-        //[/UserButtonCode_undoButton]
+        //[UserButtonCode_saveButton] -- add your button handler code here..
+        presetManager.savePreset();
+        currentPresetLabel->setText(presetManager.getCurrentPreset());
+        //[/UserButtonCode_saveButton]
     }
-    else if (buttonThatWasClicked == redoButton.get())
-    {
-        //[UserButtonCode_redoButton] -- add your button handler code here..
-        valueTreeState.undoManager->redo();
-        //[/UserButtonCode_redoButton]
-    }
-    else if (buttonThatWasClicked == loadPreset.get())
+    else if (buttonThatWasClicked == loadPresetBtn.get())
     {
         //[UserButtonCode_loadPreset] -- add your button handler code here..
         presetManager.loadPreset();
         currentPresetLabel->setText(presetManager.getCurrentPreset());
         //[/UserButtonCode_loadPreset]
+    }
+    else if (buttonThatWasClicked == undoBtn.get())
+    {
+        //[UserButtonCode_saveButton] -- add your button handler code here..
+        valueTreeState.undoManager->undo();
+        //[/UserButtonCode_saveButton]
+    }
+    else if (buttonThatWasClicked == redoBtn.get())
+    {
+        //[UserButtonCode_saveButton] -- add your button handler code here..
+        valueTreeState.undoManager->redo();
+        //[/UserButtonCode_saveButton]
     }
     else if (buttonThatWasClicked == nextPresetBtn.get())
     {
@@ -1402,16 +1576,6 @@ void PluginEditor::buttonClicked (juce::Button* buttonThatWasClicked)
         presetManager.loadPreviousPreset();
         currentPresetLabel->setText(presetManager.getCurrentPreset());
         //[/UserButtonCode_prevPresetBtn]
-    }
-
-    //[UserbuttonClicked_Post]
-
-    else if (buttonThatWasClicked == savePreset.get())
-    {
-        //[UserButtonCode_saveButton] -- add your button handler code here..
-        presetManager.savePreset();
-        currentPresetLabel->setText(presetManager.getCurrentPreset());
-        //[/UserButtonCode_saveButton]
     }
 
     //[/UserbuttonClicked_Post]
@@ -1437,8 +1601,8 @@ BEGIN_JUCER_METADATA
                  variableInitialisers="AudioProcessorEditor(&amp;p), processor(p), valueTreeState(vts),&#10;presetManager(vts, p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="900" initialHeight="600">
-  <BACKGROUND backgroundColour="ff252453">
-    <RECT pos="47 344 262 246" fill=" radial: 184 472, 368 288, 0=ff48468c, 1=ff252453"
+  <BACKGROUND backgroundColour="ff0d0d1b">
+    <RECT pos="47 344 262 246" fill=" radial: 184 472, 328 344, 0=ff48468c, 1=ff0d0d1b"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <TEXT pos="49 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
@@ -1470,7 +1634,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="254 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="319 344 262 246" fill=" radial: 480 472, 672 288, 0=ff48468c, 1=ff252453"
+    <RECT pos="319 344 262 246" fill=" radial: 456 472, 592 344, 0=ff48468c, 1=ff0d0d1b"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <TEXT pos="321 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
@@ -1502,7 +1666,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="526 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="591 344 262 246" fill=" radial: 776 480, 960 296, 0=ff48468c, 1=ff252453"
+    <RECT pos="591 344 262 246" fill=" radial: 720 472, 584 312, 0=ff48468c, 1=ff0d0d0d"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <TEXT pos="593 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
@@ -1534,9 +1698,9 @@ BEGIN_JUCER_METADATA
     <TEXT pos="798 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="47 60 133 274" fill=" radial: 120 200, 184 56, 0=ff48468c, 1=ff252453"
+    <RECT pos="47 60 133 274" fill=" radial: 120 200, 184 56, 0=ff48468c, 1=ff0d0d1b"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="720 60 133 274" fill=" radial: 120 200, 184 56, 0=ff48468c, 1=ff252453"
+    <RECT pos="720 60 133 274" fill=" radial: 784 192, 856 48, 0=ff48468c, 1=ff0d0d1b"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <TEXT pos="720 170 133 30" fill="solid: ffffffff" hasStroke="0" text="INPUT GAIN"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
@@ -1550,9 +1714,34 @@ BEGIN_JUCER_METADATA
     <TEXT pos="47 287 133 30" fill="solid: ffffffff" hasStroke="0" text="MID - HIGH"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <RECT pos="300 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
+    <RECT pos="475 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="190 64 520 270" fill="linear: 450 200, 450 -300, 0=ff0d0d1b, 1=a9ffffff"
+          hasStroke="0"/>
+    <RECT pos="423 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="280 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="336 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="543 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="799 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="590 10 200 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff171730"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <TEXT pos="40 10 232 38" fill="solid: ffffffff" hasStroke="0" text="DYNAMYTE"
+          fontname="Microsoft YaHei" fontsize="43.3" kerning="0.044" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <RECT pos="48 11 216 38" fill="solid: ffffff" hasStroke="1" stroke="2.7, mitered, butt"
+          strokeColour="solid: ffffffff"/>
   </BACKGROUND>
+  <GENERICCOMPONENT name="spectrumGrid" id="959e31870bbce1ee" memberName="spectrumGrid"
+                    virtualName="" explicitFocusOrder="0" pos="190 64 520 270" class="SpectrumGrid"
+                    params=""/>
+  <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
+                    virtualName="" explicitFocusOrder="0" pos="190 64 520 270" class="FFTperformer"
+                    params=""/>
   <SLIDER name="b1_attack" id="4a45c8fdcf5d8073" memberName="b1_attack"
           virtualName="" explicitFocusOrder="0" pos="64 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
@@ -1701,9 +1890,6 @@ BEGIN_JUCER_METADATA
           max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
-  <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
-                    virtualName="" explicitFocusOrder="0" pos="190 64 520 270" class="FFTperformer"
-                    params=""/>
   <SLIDER name="inputGainSlider" id="17ba4c1f3337bd0b" memberName="inputGainSlider"
           virtualName="" explicitFocusOrder="0" pos="746 100 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
@@ -1714,28 +1900,28 @@ BEGIN_JUCER_METADATA
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
-  <TEXTBUTTON name="undoButton" id="d0410ee6fabed5b2" memberName="undoButton"
-              virtualName="" explicitFocusOrder="0" pos="56 8 87 48" buttonText="UNDO"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="redoButton" id="9ef72c1afc7dc04a" memberName="redoButton"
-              virtualName="" explicitFocusOrder="0" pos="152 8 87 48" buttonText="REDO"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="loadPreset" id="38ffecc666e4b73" memberName="loadPreset"
-              virtualName="" explicitFocusOrder="0" pos="688 8 112 40" buttonText="Load Preset"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <GENERICCOMPONENT name="savePreset" id="b52e5d83bea0c61c" memberName="savePreset"
-                    virtualName="" explicitFocusOrder="0" pos="301 11 38 38" class="SaveButton"
-                    params="&quot;saveBTN&quot;"/>
-  <TEXTBUTTON name="nextPresetBtn" id="2ba0e748887ef088" memberName="nextPresetBtn"
-              virtualName="" explicitFocusOrder="0" pos="632 8 40 40" buttonText="&gt;"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="prevPresetBtn" id="e2cddde55f0fec07" memberName="prevPresetBtn"
-              virtualName="" explicitFocusOrder="0" pos="360 8 40 40" buttonText="&lt;"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="currentPresetLabel" id="6b8516459c37fdfa" memberName="currentPresetLabel"
-              virtualName="" explicitFocusOrder="0" pos="416 8 200 40" bkgcol="495358"
-              outlinecol="ffffffff" initialText="" multiline="0" retKeyStartsLine="0"
+              virtualName="" explicitFocusOrder="0" pos="590 10 200 35" bkgcol="495358"
+              outlinecol="ffffff" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
+  <GENERICCOMPONENT name="savePresetBtn" id="b52e5d83bea0c61c" memberName="savePresetBtn"
+                    virtualName="" explicitFocusOrder="0" pos="424 11 38 38" class="IconButtons"
+                    params="&quot;saveBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/saveIcon.svg&quot;, 60,60&#10;"/>
+  <GENERICCOMPONENT name="undoBtn" id="16dad68d7b3a4fc6" memberName="undoBtn" virtualName=""
+                    explicitFocusOrder="0" pos="281 11 38 38" class="IconButtons"
+                    params="&quot;undoBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/undoIcon.svg&quot;, 60, 60"/>
+  <GENERICCOMPONENT name="redoBtn" id="36b84d8300cb08ff" memberName="redoBtn" virtualName=""
+                    explicitFocusOrder="0" pos="337 11 38 38" class="IconButtons"
+                    params="&quot;redoBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/redoIcon.svg&quot;, 60, 60&#10;"/>
+  <GENERICCOMPONENT name="loadPresetBtn" id="26eb954970370da9" memberName="loadPresetBtn"
+                    virtualName="" explicitFocusOrder="0" pos="476 11 38 38" class="IconButtons"
+                    params="&quot;loadBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/loadIcon.svg&quot;, 60,60&#10;"/>
+  <GENERICCOMPONENT name="prevPresetBtn" id="a902cafffce9e86d" memberName="prevPresetBtn"
+                    virtualName="" explicitFocusOrder="0" pos="544 11 38 38" class="IconButtons"
+                    params="&quot;prevPresetBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/prevPresetIcon.svg&quot;, 40,40&#10;"/>
+  <GENERICCOMPONENT name="nextPresetBtn" id="8a7bbd96234b3cf0" memberName="nextPresetBtn"
+                    virtualName="" explicitFocusOrder="0" pos="800 11 38 38" class="IconButtons"
+                    params="&quot;nextPresetBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/nextPresetIcon.svg&quot;, 40,40&#10;"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

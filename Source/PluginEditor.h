@@ -115,6 +115,8 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    std::unique_ptr<SpectrumGrid> spectrumGrid;
+    std::unique_ptr<FFTperformer> spectrumVisualizer;
     std::unique_ptr<juce::Slider> b1_attack;
     std::unique_ptr<juce::Slider> b1_release;
     std::unique_ptr<juce::Slider> b1_threshold;
@@ -147,16 +149,15 @@ private:
     std::unique_ptr<juce::ToggleButton> b3_bypass;
     std::unique_ptr<juce::Slider> lowFreqSlider;
     std::unique_ptr<juce::Slider> highFreqSlider;
-    std::unique_ptr<FFTperformer> spectrumVisualizer;
     std::unique_ptr<juce::Slider> inputGainSlider;
     std::unique_ptr<juce::Slider> outputGainSlider;
-    std::unique_ptr<juce::TextButton> undoButton;
-    std::unique_ptr<juce::TextButton> redoButton;
-    std::unique_ptr<juce::TextButton> loadPreset;
-    std::unique_ptr<SaveButton> savePreset;
-    std::unique_ptr<juce::TextButton> nextPresetBtn;
-    std::unique_ptr<juce::TextButton> prevPresetBtn;
     std::unique_ptr<juce::TextEditor> currentPresetLabel;
+    std::unique_ptr<IconButtons> savePresetBtn;
+    std::unique_ptr<IconButtons> undoBtn;
+    std::unique_ptr<IconButtons> redoBtn;
+    std::unique_ptr<IconButtons> loadPresetBtn;
+    std::unique_ptr<IconButtons> prevPresetBtn;
+    std::unique_ptr<IconButtons> nextPresetBtn;
 
 
     //==============================================================================
