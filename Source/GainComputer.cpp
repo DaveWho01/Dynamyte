@@ -26,12 +26,11 @@ void GainComputer::releaseResources()
 {
 }
 
-void GainComputer::processBlock(AudioBuffer<float>& buffer)
+void GainComputer::processBlock(AudioBuffer<float>& buffer, const int numSamplesToProcess)
 {
 	auto bufferData = buffer.getArrayOfWritePointers();
-	auto numSamples = buffer.getNumSamples();
 
-	for (int smp = 0; smp < numSamples; ++smp)
+	for (int smp = 0; smp < numSamplesToProcess; ++smp)
 	{
 		const auto thresholdValue = threshold.getNextValue();
 		const auto ratioValue = ratio.getNextValue();

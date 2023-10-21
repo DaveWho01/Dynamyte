@@ -1,7 +1,7 @@
 #include "FFTperformer.h"
 
-FFTperformer::FFTperformer()
-    : forwardFFT(fftOrder), window(fftSize, dsp::WindowingFunction<float>::hann)
+FFTperformer::FFTperformer(double sampleRate)
+    : forwardFFT(fftOrder), window(fftSize, dsp::WindowingFunction<float>::hann), sr(sampleRate)
 {
     processorData = nullptr;
     startTimerHz(FPS);
@@ -60,10 +60,17 @@ void FFTperformer::copyToFFTBuffer()
 
 void FFTperformer::paint(Graphics& g)
 {
+    paintGrid(g);
+
     Path area, line;
 
-    auto width = getLocalBounds().getWidth();
-    auto height = getLocalBounds().getHeight();
+    auto width = getWidth();
+    auto height = getHeight() * 0.95f;
+    auto labelsH = getHeight() * 0.05f;
+    
+    // draw outline
+    g.setColour(Colours::white);
+    g.drawRect(0.0f, 0.0f, (float)width, (float)height, 1.0f);
 
     for (int i = 0; i < scopeSize; ++i)
     {
@@ -92,5 +99,42 @@ void FFTperformer::paint(Graphics& g)
     g.setColour(Colours::white);
     g.setOpacity(1.0f);
     g.strokePath(line, PathStrokeType(2.0f));
+}
+
+inline float FFTperformer::logTransformInRange0to1(const float between0and1)
+{
+    const float minimum = 1.0f;
+    const float maximum = 1000.0f;
+    return log10(minimum + ((maximum - minimum) * between0and1)) / log10(maximum);
+}
+
+void FFTperformer::paintGrid(Graphics& g)
+{
+    auto height = getHeight() * 0.95f;
+    auto width = getWidth();
+    float labelH = height * 0.05f;
+    float labelW = 20.0f;
+
+    g.setColour(Colours::white);
+
+    // draw vertical freq lines
+    g.setOpacity(0.5f);
+    auto maxNofFrequencies = sizeof(frequenciesToPlot) / sizeof(frequenciesToPlot[0]);
+    for (int i = 0; i < maxNofFrequencies; ++i)
+    {
+        const double proportion = frequenciesToPlot[i] / (sr * 0.5);
+        int xPos = logTransformInRange0to1(proportion) * width;
+        g.drawVerticalLine(xPos, 0.0f, height);
+    }
+    
+    // draw freq text labels
+    g.setOpacity(1.0f);
+    for (int i = 0; i < frequenciesLabel.size(); ++i)
+    {
+        const double proportion = frequenciesLabel[i] / (sr * 0.5);
+        int xPos = logTransformInRange0to1(proportion) * getWidth();
+        g.drawFittedText(labels[i], xPos - (labelW * 0.5f), height + 1.0f, labelW, labelH, Justification::centred, 1);
+    }
+    
 }
 

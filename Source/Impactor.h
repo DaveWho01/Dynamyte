@@ -17,7 +17,7 @@ public:
     void prepareToPlay(double sampleRate, int samplesPerBlock);
     void releaseResources();
 
-    void processBlock(AudioBuffer<float>& mainBuffer, AudioBuffer<float>& scBuffer);
+    void processBlock(AudioBuffer<float>& mainBuffer, AudioBuffer<float>& scBuffer, const int numSamplesToProcess);
     void parameterChanged(const String paramID, float newValue);
 
 private:

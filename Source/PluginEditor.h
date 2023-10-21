@@ -25,6 +25,7 @@
 #include "DynamyteTheme.h"
 #include "CustomGUIclasses.h"
 #include "PresetManager.h"
+#include "IconPath.h"
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
@@ -112,10 +113,12 @@ private:
     // preset management
     PresetManager presetManager;
 
+    // icon paths
+
+
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<SpectrumGrid> spectrumGrid;
     std::unique_ptr<FFTperformer> spectrumVisualizer;
     std::unique_ptr<juce::Slider> b1_attack;
     std::unique_ptr<juce::Slider> b1_release;

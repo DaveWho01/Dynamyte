@@ -58,9 +58,11 @@ void BandSplitter::releaseResources()
 
 void BandSplitter::splitSignal(AudioBuffer<float>& sourceBuffer, AudioBuffer<float>& firstBandBuffer, AudioBuffer<float>& secondBandBuffer, AudioBuffer<float>& thirdBandBuffer)
 {
-
 	const auto numChannels = sourceBuffer.getNumChannels();
 	const auto numSamples = sourceBuffer.getNumSamples();
+	firstBandBuffer.clear();
+	secondBandBuffer.clear();
+	thirdBandBuffer.clear();
 
 	for (int ch = 0; ch < numChannels; ++ch)
 	{
@@ -71,10 +73,10 @@ void BandSplitter::splitSignal(AudioBuffer<float>& sourceBuffer, AudioBuffer<flo
 	}
 
 	// blocks and context
-	auto fb1Block = dsp::AudioBlock<float>(firstBandBuffer);
-	auto fb1Context = dsp::ProcessContextReplacing(fb1Block);
-	auto fb2Block = dsp::AudioBlock<float>(secondBandBuffer);
-	auto fb2Context = dsp::ProcessContextReplacing(fb2Block);
+	auto fb1Block = dsp::AudioBlock<float>(firstBandBuffer).getSubBlock(0, numSamples);
+	auto fb1Context = dsp::ProcessContextReplacing<float>(fb1Block);
+	auto fb2Block = dsp::AudioBlock<float>(secondBandBuffer).getSubBlock(0, numSamples);
+	auto fb2Context = dsp::ProcessContextReplacing<float>(fb2Block);
 
 	// processing
 	LP1.process(fb1Context);
@@ -87,7 +89,7 @@ void BandSplitter::splitSignal(AudioBuffer<float>& sourceBuffer, AudioBuffer<flo
 	{
 		thirdBandBuffer.copyFrom(ch, 0, secondBandBuffer, ch, 0, numSamples);
 	}
-	auto fb3Block = dsp::AudioBlock<float>(thirdBandBuffer);
+	auto fb3Block = dsp::AudioBlock<float>(thirdBandBuffer).getSubBlock(0, numSamples);
 	auto fb3Context = dsp::ProcessContextReplacing(fb3Block);
 
 	// LP2 che agisce sul buffer in uscita da HP1

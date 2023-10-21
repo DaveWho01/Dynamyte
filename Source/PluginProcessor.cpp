@@ -95,6 +95,7 @@ void DynamyteAudioProcessor::changeProgramName (int index, const juce::String& n
 //==============================================================================
 void DynamyteAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    sr = sampleRate;
     auto numOutputCh = getNumOutputChannels();
 
     firstBandBuffer.setSize(numOutputCh, samplesPerBlock);
@@ -115,10 +116,6 @@ void DynamyteAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     generalOutputGain.prepareToPlay(sampleRate);
 
     bufferForFFT.prepareToPlay(sampleRate, 2048, numOutputCh);
-
-    /*bufferInfo.buffer = nullptr;
-    bufferInfo.startSample = 0;
-    bufferInfo.numSamples = samplesPerBlock;*/
 }
 
 void DynamyteAudioProcessor::releaseResources()
@@ -136,7 +133,6 @@ void DynamyteAudioProcessor::releaseResources()
     generalInputGain.releaseResources();
     generalOutputGain.releaseResources();
 
-    //bufferInfo.buffer = nullptr;
 }
 
 bool DynamyteAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
@@ -165,38 +161,38 @@ void DynamyteAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     auto mainBuffer = getBusBuffer(buffer, true, 0);
     auto scBuffer = getBusBuffer(buffer, true, 1);
 
+    auto samplesToProcess = mainBuffer.getNumSamples();
+
     if (!bypass)
     {
-        generalInputGain.processBlock(buffer);
-
+        generalInputGain.processBlock(buffer, samplesToProcess);
+        
         bandSplitter.splitSignal(mainBuffer, firstBandBuffer, secondBandBuffer, thirdBandBuffer);
-
-        //DBG(String(scBuffer.getNumChannels()));
 
         if (scBuffer.getNumChannels())
         {
             if (!band1Bypass)
-                b1Comp.processBlock(firstBandBuffer, scBuffer);
+                b1Comp.processBlock(firstBandBuffer, scBuffer, samplesToProcess);
             if (!band2Bypass)
-                b2Comp.processBlock(secondBandBuffer, scBuffer);
+                b2Comp.processBlock(secondBandBuffer, scBuffer, samplesToProcess);
             if (!band3Bypass)
-                b3Comp.processBlock(thirdBandBuffer, scBuffer);
+                b3Comp.processBlock(thirdBandBuffer, scBuffer, samplesToProcess);
         }
         else
         {
             if (!band1Bypass)
-                b1Comp.processBlock(firstBandBuffer, firstBandBuffer);
+                b1Comp.processBlock(firstBandBuffer, firstBandBuffer, samplesToProcess);
             if (!band2Bypass)
-                b2Comp.processBlock(secondBandBuffer, secondBandBuffer);
+                b2Comp.processBlock(secondBandBuffer, secondBandBuffer, samplesToProcess);
             if (!band3Bypass)
-                b3Comp.processBlock(thirdBandBuffer, thirdBandBuffer);
+                b3Comp.processBlock(thirdBandBuffer, thirdBandBuffer, samplesToProcess);
         }
-
+        
         bandSplitter.mix(mainBuffer, firstBandBuffer, secondBandBuffer, thirdBandBuffer);
 
-        generalOutputGain.processBlock(mainBuffer);
+        generalOutputGain.processBlock(mainBuffer, samplesToProcess);
     }
-
+    
     // spectrum
     if (beenCopied.get()) // se nella classe fftPerformer è stato copiato il buffer
     {
@@ -247,6 +243,11 @@ void DynamyteAudioProcessor::toggleBandBypass(bool newValue, int nBand)
         band2Bypass = newValue;
     else if (nBand == 3)
         band3Bypass = newValue;
+}
+
+double DynamyteAudioProcessor::getSampleRate()
+{
+    return sr;
 }
 
 void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newValue)

@@ -35,17 +35,11 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     //[/Constructor_pre]
 
-    spectrumGrid.reset (new SpectrumGrid());
-    addAndMakeVisible (spectrumGrid.get());
-    spectrumGrid->setName ("spectrumGrid");
-
-    spectrumGrid->setBounds (190, 64, 520, 270);
-
-    spectrumVisualizer.reset (new FFTperformer());
+    spectrumVisualizer.reset (new FFTperformer (p.getSampleRate()));
     addAndMakeVisible (spectrumVisualizer.get());
     spectrumVisualizer->setName ("spectrumVisualizer");
 
-    spectrumVisualizer->setBounds (190, 64, 520, 270);
+    spectrumVisualizer->setBounds (190, 60, 520, 274);
 
     b1_attack.reset (new juce::Slider ("b1_attack"));
     addAndMakeVisible (b1_attack.get());
@@ -381,41 +375,41 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     currentPresetLabel->setBounds (590, 10, 200, 35);
 
-    savePresetBtn.reset (new IconButtons ("saveBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/saveIcon.svg", 60,60
+    savePresetBtn.reset (new IconButtons ("saveBTN", IconsPathData::saveIconPathData,sizeof(IconsPathData::saveIconPathData), 50,50
                                           ));
     addAndMakeVisible (savePresetBtn.get());
     savePresetBtn->setName ("savePresetBtn");
 
     savePresetBtn->setBounds (424, 11, 38, 38);
 
-    undoBtn.reset (new IconButtons ("undoBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/undoIcon.svg", 60, 60));
+    undoBtn.reset (new IconButtons ("undoBTN", IconsPathData::undoIconPathData, sizeof(IconsPathData::undoIconPathData) ,50, 50));
     addAndMakeVisible (undoBtn.get());
     undoBtn->setName ("undoBtn");
 
     undoBtn->setBounds (281, 11, 38, 38);
 
-    redoBtn.reset (new IconButtons ("redoBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/redoIcon.svg", 60, 60
+    redoBtn.reset (new IconButtons ("redoBTN", IconsPathData::redoIconPathData, sizeof(IconsPathData::redoIconPathData), 50, 50
                                     ));
     addAndMakeVisible (redoBtn.get());
     redoBtn->setName ("redoBtn");
 
     redoBtn->setBounds (337, 11, 38, 38);
 
-    loadPresetBtn.reset (new IconButtons ("loadBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/loadIcon.svg", 60,60
+    loadPresetBtn.reset (new IconButtons ("loadBTN", IconsPathData::loadIconPathData,sizeof(IconsPathData::loadIconPathData), 50,50
                                           ));
     addAndMakeVisible (loadPresetBtn.get());
     loadPresetBtn->setName ("loadPresetBtn");
 
     loadPresetBtn->setBounds (476, 11, 38, 38);
 
-    prevPresetBtn.reset (new IconButtons ("prevPresetBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/prevPresetIcon.svg", 40,40
+    prevPresetBtn.reset (new IconButtons ("prevPresetBTN", IconsPathData::prevIconPathData,sizeof(IconsPathData::prevIconPathData), 40,40
                                           ));
     addAndMakeVisible (prevPresetBtn.get());
     prevPresetBtn->setName ("prevPresetBtn");
 
     prevPresetBtn->setBounds (544, 11, 38, 38);
 
-    nextPresetBtn.reset (new IconButtons ("nextPresetBTN", "C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/nextPresetIcon.svg", 40,40
+    nextPresetBtn.reset (new IconButtons ("nextPresetBTN", IconsPathData::nextIconPathData,sizeof(IconsPathData::nextIconPathData), 40,40
                                           ));
     addAndMakeVisible (nextPresetBtn.get());
     nextPresetBtn->setName ("nextPresetBtn");
@@ -606,7 +600,6 @@ PluginEditor::~PluginEditor()
 
     //[/Destructor_pre]
 
-    spectrumGrid = nullptr;
     spectrumVisualizer = nullptr;
     b1_attack = nullptr;
     b1_release = nullptr;
@@ -1186,16 +1179,16 @@ void PluginEditor::paint (juce::Graphics& g)
     }
 
     {
-        int x = 190, y = 64, width = 520, height = 270;
+        int x = 190, y = 60, width = 520, height = 274;
         juce::Colour fillColour1 = juce::Colour (0xff0d0d1b), fillColour2 = juce::Colour (0xa9ffffff);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
                                              450.0f - 190.0f + x,
-                                             200.0f - 64.0f + y,
+                                             200.0f - 60.0f + y,
                                              fillColour2,
                                              450.0f - 190.0f + x,
-                                             static_cast<float> (-300) - 64.0f + y,
+                                             static_cast<float> (-300) - 60.0f + y,
                                              false));
         g.fillRect (x, y, width, height);
     }
@@ -1716,7 +1709,7 @@ BEGIN_JUCER_METADATA
           italic="0" justification="36" typefaceStyle="Bold"/>
     <RECT pos="475 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="190 64 520 270" fill="linear: 450 200, 450 -300, 0=ff0d0d1b, 1=a9ffffff"
+    <RECT pos="190 60 520 274" fill="linear: 450 200, 450 -300, 0=ff0d0d1b, 1=a9ffffff"
           hasStroke="0"/>
     <RECT pos="423 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
@@ -1736,12 +1729,9 @@ BEGIN_JUCER_METADATA
     <RECT pos="48 11 216 38" fill="solid: ffffff" hasStroke="1" stroke="2.7, mitered, butt"
           strokeColour="solid: ffffffff"/>
   </BACKGROUND>
-  <GENERICCOMPONENT name="spectrumGrid" id="959e31870bbce1ee" memberName="spectrumGrid"
-                    virtualName="" explicitFocusOrder="0" pos="190 64 520 270" class="SpectrumGrid"
-                    params=""/>
   <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
-                    virtualName="" explicitFocusOrder="0" pos="190 64 520 270" class="FFTperformer"
-                    params=""/>
+                    virtualName="" explicitFocusOrder="0" pos="190 60 520 274" class="FFTperformer"
+                    params="p.getSampleRate()"/>
   <SLIDER name="b1_attack" id="4a45c8fdcf5d8073" memberName="b1_attack"
           virtualName="" explicitFocusOrder="0" pos="64 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
@@ -1906,22 +1896,22 @@ BEGIN_JUCER_METADATA
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <GENERICCOMPONENT name="savePresetBtn" id="b52e5d83bea0c61c" memberName="savePresetBtn"
                     virtualName="" explicitFocusOrder="0" pos="424 11 38 38" class="IconButtons"
-                    params="&quot;saveBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/saveIcon.svg&quot;, 60,60&#10;"/>
+                    params="&quot;saveBTN&quot;, IconsPathData::saveIconPathData,sizeof(IconsPathData::saveIconPathData), 50,50&#10;"/>
   <GENERICCOMPONENT name="undoBtn" id="16dad68d7b3a4fc6" memberName="undoBtn" virtualName=""
                     explicitFocusOrder="0" pos="281 11 38 38" class="IconButtons"
-                    params="&quot;undoBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/undoIcon.svg&quot;, 60, 60"/>
+                    params="&quot;undoBTN&quot;, IconsPathData::undoIconPathData, sizeof(IconsPathData::undoIconPathData) ,50, 50"/>
   <GENERICCOMPONENT name="redoBtn" id="36b84d8300cb08ff" memberName="redoBtn" virtualName=""
                     explicitFocusOrder="0" pos="337 11 38 38" class="IconButtons"
-                    params="&quot;redoBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/redoIcon.svg&quot;, 60, 60&#10;"/>
+                    params="&quot;redoBTN&quot;, IconsPathData::redoIconPathData, sizeof(IconsPathData::redoIconPathData), 50, 50&#10;"/>
   <GENERICCOMPONENT name="loadPresetBtn" id="26eb954970370da9" memberName="loadPresetBtn"
                     virtualName="" explicitFocusOrder="0" pos="476 11 38 38" class="IconButtons"
-                    params="&quot;loadBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/loadIcon.svg&quot;, 60,60&#10;"/>
+                    params="&quot;loadBTN&quot;, IconsPathData::loadIconPathData,sizeof(IconsPathData::loadIconPathData), 50,50&#10;"/>
   <GENERICCOMPONENT name="prevPresetBtn" id="a902cafffce9e86d" memberName="prevPresetBtn"
                     virtualName="" explicitFocusOrder="0" pos="544 11 38 38" class="IconButtons"
-                    params="&quot;prevPresetBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/prevPresetIcon.svg&quot;, 40,40&#10;"/>
+                    params="&quot;prevPresetBTN&quot;, IconsPathData::prevIconPathData,sizeof(IconsPathData::prevIconPathData), 40,40&#10;"/>
   <GENERICCOMPONENT name="nextPresetBtn" id="8a7bbd96234b3cf0" memberName="nextPresetBtn"
                     virtualName="" explicitFocusOrder="0" pos="800 11 38 38" class="IconButtons"
-                    params="&quot;nextPresetBTN&quot;, &quot;C:/Users/david/OneDrive/Documenti/progetti juce/Dynamyte/icons/nextPresetIcon.svg&quot;, 40,40&#10;"/>
+                    params="&quot;nextPresetBTN&quot;, IconsPathData::nextIconPathData,sizeof(IconsPathData::nextIconPathData), 40,40&#10;"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

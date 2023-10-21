@@ -5,16 +5,6 @@
               pluginManufacturer="DaveWho" pluginManufacturerCode="DVWH" defines="JUCE_MODAL_LOOPS_PERMITTED = 1"
               companyName="DaveWho">
   <MAINGROUP id="e1hwiK" name="Dynamyte">
-    <GROUP id="{5CB7FF14-0A7E-5B78-DF45-557652E56EF3}" name="icons">
-      <FILE id="DUwp0H" name="saveIcon.svg" compile="0" resource="1" file="icons/saveIcon.svg"/>
-      <FILE id="j5pZVg" name="loadIcon.svg" compile="0" resource="1" file="icons/loadIcon.svg"/>
-      <FILE id="dBJKEe" name="redoIcon.svg" compile="0" resource="1" file="icons/redoIcon.svg"/>
-      <FILE id="TWHJTV" name="undoIcon.svg" compile="0" resource="1" file="icons/undoIcon.svg"/>
-      <FILE id="Gt4JRK" name="nextPresetIcon.svg" compile="0" resource="1"
-            file="icons/nextPresetIcon.svg"/>
-      <FILE id="joixvO" name="prevPresetIcon.svg" compile="0" resource="1"
-            file="icons/prevPresetIcon.svg"/>
-    </GROUP>
     <GROUP id="{99C7C12B-67C2-5643-824A-1A3EA9320495}" name="DSP">
       <GROUP id="{15382BAA-EC15-6E76-5B4B-00C24510F245}" name="Impactor">
         <FILE id="QNq9hQ" name="Detector.cpp" compile="1" resource="0" file="Source/Detector.cpp"/>
@@ -38,6 +28,7 @@
       <FILE id="eWzFCj" name="BandSplitter.h" compile="0" resource="0" file="Source/BandSplitter.h"/>
     </GROUP>
     <GROUP id="{9B8AA8CE-E67C-C02B-C7D8-DB208331217F}" name="GUI">
+      <FILE id="T4yXAM" name="IconPath.h" compile="0" resource="0" file="Source/IconPath.h"/>
       <FILE id="zFbJWp" name="CustomGUIclasses.cpp" compile="1" resource="0"
             file="Source/CustomGUIclasses.cpp"/>
       <FILE id="GmiinE" name="CustomGUIclasses.h" compile="0" resource="0"
@@ -75,7 +66,7 @@
     <VS2022 targetFolder="Builds/VisualStudio2022">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="Dynamyte"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="Dynamyte"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Dynamyte" useRuntimeLibDLL="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>

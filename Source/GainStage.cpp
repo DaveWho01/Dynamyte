@@ -18,9 +18,9 @@ void GainStage::releaseResources()
 {
 }
 
-void GainStage::processBlock(AudioBuffer<float>& buffer)
+void GainStage::processBlock(AudioBuffer<float>& buffer, const int numSamplesToProcess)
 {
-	gain.applyGain(buffer, buffer.getNumSamples());
+	gain.applyGain(buffer, numSamplesToProcess);
 }
 
 void GainStage::setGain(float newValue)

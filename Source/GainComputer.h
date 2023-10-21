@@ -15,7 +15,7 @@ public:
 
 	void prepareToPlay(double sampleRate);
 	void releaseResources();
-	void processBlock(AudioBuffer<float>&);
+	void processBlock(AudioBuffer<float>& buffer, const int numSamplesToProcess);
 
 	void setThreshold(float newValue);
 	void setRatio(float newValue);

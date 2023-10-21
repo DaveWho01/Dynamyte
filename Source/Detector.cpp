@@ -23,16 +23,15 @@ void Detector::releaseResources()
 {
 }
 
-void Detector::processBlock(AudioBuffer<float>& buffer)
+void Detector::processBlock(AudioBuffer<float>& buffer, const int numSamplesToProcess)
 {
 	auto numChannels = buffer.getNumChannels();
-	auto numSamples = buffer.getNumSamples();
 	auto bufferData = buffer.getArrayOfWritePointers();
 
 	for (int ch = 0; ch < numChannels; ch++)
-		FloatVectorOperations::abs(bufferData[ch], bufferData[ch], numSamples);
+		FloatVectorOperations::abs(bufferData[ch], bufferData[ch], numSamplesToProcess);
 
-	for (int smp = 0; smp < numSamples; ++smp)
+	for (int smp = 0; smp < numSamplesToProcess; ++smp)
 	{
 		if (numChannels > 1)
 			samplePeak = jmax(bufferData[0][smp], bufferData[1][smp]);
@@ -50,7 +49,7 @@ void Detector::processBlock(AudioBuffer<float>& buffer)
 		envelopeHistory.set(bufferData[0][smp]);
 	}
 
-	buffer.clear(1, 0, numSamples);
+	buffer.clear(1, 0, numSamplesToProcess);
 }
 
 void Detector::setAttack(float newValue)

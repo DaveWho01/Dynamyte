@@ -52,6 +52,7 @@ public:
 
     void setGeneralBypass(bool newValue);
     void toggleBandBypass(bool newValue, int nBand);
+    double getSampleRate();
 
     CircularBuffer bufferForFFT;
     Atomic<bool> beenCopied;
@@ -59,6 +60,8 @@ public:
 private:
     void parameterChanged(const String& paramID, float newValue) override;
     AudioProcessorValueTreeState parameters;
+
+    double sr;
 
     BandSplitter bandSplitter;
 

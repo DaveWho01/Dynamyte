@@ -5,7 +5,8 @@ PresetManager::PresetManager(AudioProcessorValueTreeState& APVTS, DynamyteAudioP
 {
     defaultDir = File::getSpecialLocation(File::SpecialLocationType::commonDocumentsDirectory)
         .getChildFile(ProjectInfo::companyName)
-        .getChildFile(ProjectInfo::projectName);
+        .getChildFile(ProjectInfo::projectName)
+        .getChildFile("Presets");
     extension = ".xml";
     currentPreset = "-- No preset selected --";
 

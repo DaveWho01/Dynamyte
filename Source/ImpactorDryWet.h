@@ -10,8 +10,8 @@ public:
 
 	void prepareToPlay(const double sr, const int maxNumSamples);
 	void releaseResources();
-	void copyDrySignal(const AudioBuffer<float>& buffer);
-	void merge(AudioBuffer<float> buffer);
+	void copyDrySignal(const AudioBuffer<float>& buffer, const int numSamplesToProcess);
+	void merge(AudioBuffer<float>& buffer, const int numSamplesToProcess);
 	void setDryWetRatio(const float newValue);
 
 

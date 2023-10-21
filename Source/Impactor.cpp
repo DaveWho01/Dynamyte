@@ -33,29 +33,27 @@ void Impactor::releaseResources()
     makeupGain.releaseResources();
 }
 
-void Impactor::processBlock(AudioBuffer<float>& mainBuffer, AudioBuffer<float>& scBuffer)
+void Impactor::processBlock(AudioBuffer<float>& mainBuffer, AudioBuffer<float>& scBuffer, const int numSamplesToProcess)
 {
-    auto numSamples = mainBuffer.getNumSamples();
+    dryWet.copyDrySignal(mainBuffer, numSamplesToProcess);
 
-    dryWet.copyDrySignal(mainBuffer);
-
-    inputGain.processBlock(mainBuffer);
+    inputGain.processBlock(mainBuffer, numSamplesToProcess);
     
     const int numScChannels = scBuffer.getNumChannels();
-    //DBG(numScChannels);
+
     auxBuffer.clear();
     for (int ch = 0; ch < numScChannels; ++ch)
-        auxBuffer.addFrom(ch, 0, scBuffer, ch, 0, numSamples, 1.0f);
+        auxBuffer.addFrom(ch, 0, scBuffer, ch, 0, numSamplesToProcess, 1.0f);
 
-    peakDetector.processBlock(auxBuffer);
+    peakDetector.processBlock(auxBuffer, numSamplesToProcess);
 
-    gainComputer.processBlock(auxBuffer);
+    gainComputer.processBlock(auxBuffer, numSamplesToProcess);
 
-    gainControl.processBlock(mainBuffer, auxBuffer);
+    gainControl.processBlock(mainBuffer, auxBuffer, numSamplesToProcess);
 
-    makeupGain.processBlock(mainBuffer);
+    makeupGain.processBlock(mainBuffer, numSamplesToProcess);
 
-    dryWet.merge(mainBuffer);
+    dryWet.merge(mainBuffer, numSamplesToProcess);
     
 }
 

@@ -10,7 +10,7 @@ public:
 
 	void prepareToPlay(double sr);
 	void releaseResources();
-	void processBlock(AudioBuffer<float>&);
+	void processBlock(AudioBuffer<float>& buffer, const int numSamplesToProcess);
 
 	void setGain(float newValue);
 

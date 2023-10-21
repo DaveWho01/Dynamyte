@@ -27,26 +27,24 @@ void ImpactorDryWet::releaseResources()
     drySignal.setSize(0, 0);
 }
 
-void ImpactorDryWet::copyDrySignal(const AudioBuffer<float>& buffer)
+void ImpactorDryWet::copyDrySignal(const AudioBuffer<float>& buffer, const int numSamplesToProcess)
 {
     const auto numCh = buffer.getNumChannels();
-    const auto numSamples = buffer.getNumSamples();
 
     for (int ch = 0; ch < numCh; ++ch)
-        drySignal.copyFrom(ch, 0, buffer, ch, 0, numSamples);
+        drySignal.copyFrom(ch, 0, buffer, ch, 0, numSamplesToProcess);
 }
 
-void ImpactorDryWet::merge(AudioBuffer<float> buffer)
+void ImpactorDryWet::merge(AudioBuffer<float>& buffer, const int numSamplesToProcess)
 {
     const auto numCh = buffer.getNumChannels();
-    const auto numSamples = buffer.getNumSamples();
 
-    wetLevel.applyGain(buffer, numSamples);
-    dryLevel.applyGain(drySignal, numSamples);
+    wetLevel.applyGain(buffer, numSamplesToProcess);
+    dryLevel.applyGain(drySignal, numSamplesToProcess);
 
 
     for (int ch = 0; ch < numCh; ++ch)
-        buffer.addFrom(ch, 0, drySignal, ch, 0, numSamples);
+        buffer.addFrom(ch, 0, drySignal, ch, 0, numSamplesToProcess);
 }
 
 void ImpactorDryWet::setDryWetRatio(const float newValue)
