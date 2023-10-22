@@ -39,7 +39,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     addAndMakeVisible (spectrumVisualizer.get());
     spectrumVisualizer->setName ("spectrumVisualizer");
 
-    spectrumVisualizer->setBounds (190, 60, 520, 274);
+    spectrumVisualizer->setBounds (130, 55, 520, 280);
 
     b1_attack.reset (new juce::Slider ("b1_attack"));
     addAndMakeVisible (b1_attack.get());
@@ -49,7 +49,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_attack->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_attack->addListener (this);
 
-    b1_attack->setBounds (64, 441, 60, 60);
+    b1_attack->setBounds (25, 441, 60, 60);
 
     b1_release.reset (new juce::Slider ("b1_release"));
     addAndMakeVisible (b1_release.get());
@@ -59,7 +59,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_release->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_release->addListener (this);
 
-    b1_release->setBounds (149, 441, 60, 60);
+    b1_release->setBounds (105, 441, 60, 60);
 
     b1_threshold.reset (new juce::Slider ("b1_threshold"));
     addAndMakeVisible (b1_threshold.get());
@@ -69,7 +69,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_threshold->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_threshold->addListener (this);
 
-    b1_threshold->setBounds (54, 350, 80, 80);
+    b1_threshold->setBounds (15, 350, 80, 80);
 
     b1_ratio.reset (new juce::Slider ("b1_ratio"));
     addAndMakeVisible (b1_ratio.get());
@@ -79,7 +79,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_ratio->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_ratio->addListener (this);
 
-    b1_ratio->setBounds (139, 350, 80, 80);
+    b1_ratio->setBounds (95, 350, 80, 80);
 
     b1_inputGain.reset (new juce::Slider ("b1_inputGain"));
     addAndMakeVisible (b1_inputGain.get());
@@ -89,7 +89,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_inputGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_inputGain->addListener (this);
 
-    b1_inputGain->setBounds (64, 516, 60, 60);
+    b1_inputGain->setBounds (25, 516, 60, 60);
 
     b1_knee.reset (new juce::Slider ("b1_knee"));
     addAndMakeVisible (b1_knee.get());
@@ -99,7 +99,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_knee->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_knee->addListener (this);
 
-    b1_knee->setBounds (234, 441, 60, 60);
+    b1_knee->setBounds (185, 441, 60, 60);
 
     b1_makeupGain.reset (new juce::Slider ("b1_makeupGain"));
     addAndMakeVisible (b1_makeupGain.get());
@@ -109,7 +109,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_makeupGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_makeupGain->addListener (this);
 
-    b1_makeupGain->setBounds (149, 516, 60, 60);
+    b1_makeupGain->setBounds (105, 516, 60, 60);
 
     b1_dryWet.reset (new juce::Slider ("b1_dryWet"));
     addAndMakeVisible (b1_dryWet.get());
@@ -119,21 +119,21 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b1_dryWet->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b1_dryWet->addListener (this);
 
-    b1_dryWet->setBounds (234, 516, 60, 60);
+    b1_dryWet->setBounds (185, 516, 60, 60);
 
     b1_mute.reset (new juce::ToggleButton ("b1_mute"));
     addAndMakeVisible (b1_mute.get());
     b1_mute->setButtonText (juce::String());
     b1_mute->addListener (this);
 
-    b1_mute->setBounds (228, 362, 25, 25);
+    b1_mute->setBounds (181, 362, 25, 25);
 
     b1_bypass.reset (new juce::ToggleButton ("b1_bypass"));
     addAndMakeVisible (b1_bypass.get());
     b1_bypass->setButtonText (juce::String());
     b1_bypass->addListener (this);
 
-    b1_bypass->setBounds (228, 396, 25, 25);
+    b1_bypass->setBounds (181, 397, 25, 25);
 
     b2_attack.reset (new juce::Slider ("b2_attack"));
     addAndMakeVisible (b2_attack.get());
@@ -143,7 +143,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_attack->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_attack->addListener (this);
 
-    b2_attack->setBounds (336, 441, 60, 60);
+    b2_attack->setBounds (280, 441, 60, 60);
 
     b2_release.reset (new juce::Slider ("b2_release"));
     addAndMakeVisible (b2_release.get());
@@ -153,7 +153,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_release->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_release->addListener (this);
 
-    b2_release->setBounds (421, 441, 60, 60);
+    b2_release->setBounds (360, 441, 60, 60);
 
     b2_threshold.reset (new juce::Slider ("b2_threshold"));
     addAndMakeVisible (b2_threshold.get());
@@ -163,7 +163,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_threshold->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_threshold->addListener (this);
 
-    b2_threshold->setBounds (326, 350, 80, 80);
+    b2_threshold->setBounds (270, 350, 80, 80);
 
     b2_ratio.reset (new juce::Slider ("b2_ratio"));
     addAndMakeVisible (b2_ratio.get());
@@ -173,7 +173,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_ratio->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_ratio->addListener (this);
 
-    b2_ratio->setBounds (411, 350, 80, 80);
+    b2_ratio->setBounds (350, 350, 80, 80);
 
     b2_inputGain.reset (new juce::Slider ("b2_inputGain"));
     addAndMakeVisible (b2_inputGain.get());
@@ -183,7 +183,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_inputGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_inputGain->addListener (this);
 
-    b2_inputGain->setBounds (336, 516, 60, 60);
+    b2_inputGain->setBounds (280, 516, 60, 60);
 
     b2_knee.reset (new juce::Slider ("b2_knee"));
     addAndMakeVisible (b2_knee.get());
@@ -193,7 +193,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_knee->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_knee->addListener (this);
 
-    b2_knee->setBounds (506, 441, 60, 60);
+    b2_knee->setBounds (440, 441, 60, 60);
 
     b2_makeupGain.reset (new juce::Slider ("b2_makeupGain"));
     addAndMakeVisible (b2_makeupGain.get());
@@ -203,7 +203,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_makeupGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_makeupGain->addListener (this);
 
-    b2_makeupGain->setBounds (421, 516, 60, 60);
+    b2_makeupGain->setBounds (360, 516, 60, 60);
 
     b2_dryWet.reset (new juce::Slider ("b2_dryWet"));
     addAndMakeVisible (b2_dryWet.get());
@@ -213,21 +213,21 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b2_dryWet->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b2_dryWet->addListener (this);
 
-    b2_dryWet->setBounds (506, 516, 60, 60);
+    b2_dryWet->setBounds (440, 516, 60, 60);
 
     b2_mute.reset (new juce::ToggleButton ("b2_mute"));
     addAndMakeVisible (b2_mute.get());
     b2_mute->setButtonText (juce::String());
     b2_mute->addListener (this);
 
-    b2_mute->setBounds (500, 362, 25, 25);
+    b2_mute->setBounds (436, 362, 25, 25);
 
     b2_bypass.reset (new juce::ToggleButton ("b2_bypass"));
     addAndMakeVisible (b2_bypass.get());
     b2_bypass->setButtonText (juce::String());
     b2_bypass->addListener (this);
 
-    b2_bypass->setBounds (500, 396, 25, 25);
+    b2_bypass->setBounds (436, 397, 25, 25);
 
     b3_attack.reset (new juce::Slider ("b3_attack"));
     addAndMakeVisible (b3_attack.get());
@@ -237,7 +237,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_attack->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_attack->addListener (this);
 
-    b3_attack->setBounds (608, 441, 60, 60);
+    b3_attack->setBounds (535, 441, 60, 60);
 
     b3_release.reset (new juce::Slider ("b3_release"));
     addAndMakeVisible (b3_release.get());
@@ -247,7 +247,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_release->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_release->addListener (this);
 
-    b3_release->setBounds (693, 441, 60, 60);
+    b3_release->setBounds (615, 441, 60, 60);
 
     b3_threshold.reset (new juce::Slider ("b3_threshold"));
     addAndMakeVisible (b3_threshold.get());
@@ -257,7 +257,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_threshold->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_threshold->addListener (this);
 
-    b3_threshold->setBounds (598, 350, 80, 80);
+    b3_threshold->setBounds (525, 350, 80, 80);
 
     b3_ratio.reset (new juce::Slider ("b3_ratio"));
     addAndMakeVisible (b3_ratio.get());
@@ -267,7 +267,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_ratio->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_ratio->addListener (this);
 
-    b3_ratio->setBounds (683, 350, 80, 80);
+    b3_ratio->setBounds (605, 350, 80, 80);
 
     b3_inputGain.reset (new juce::Slider ("b3_inputGain"));
     addAndMakeVisible (b3_inputGain.get());
@@ -277,7 +277,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_inputGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_inputGain->addListener (this);
 
-    b3_inputGain->setBounds (608, 516, 60, 60);
+    b3_inputGain->setBounds (535, 516, 60, 60);
 
     b3_knee.reset (new juce::Slider ("b3_knee"));
     addAndMakeVisible (b3_knee.get());
@@ -287,7 +287,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_knee->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_knee->addListener (this);
 
-    b3_knee->setBounds (778, 441, 60, 60);
+    b3_knee->setBounds (695, 441, 60, 60);
 
     b3_makeupGain.reset (new juce::Slider ("b3_makeupGain"));
     addAndMakeVisible (b3_makeupGain.get());
@@ -297,7 +297,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_makeupGain->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_makeupGain->addListener (this);
 
-    b3_makeupGain->setBounds (693, 516, 60, 60);
+    b3_makeupGain->setBounds (615, 516, 60, 60);
 
     b3_dryWet.reset (new juce::Slider ("b3_dryWet"));
     addAndMakeVisible (b3_dryWet.get());
@@ -307,21 +307,21 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     b3_dryWet->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     b3_dryWet->addListener (this);
 
-    b3_dryWet->setBounds (778, 516, 60, 60);
+    b3_dryWet->setBounds (695, 516, 60, 60);
 
     b3_mute.reset (new juce::ToggleButton ("b3_mute"));
     addAndMakeVisible (b3_mute.get());
     b3_mute->setButtonText (juce::String());
     b3_mute->addListener (this);
 
-    b3_mute->setBounds (772, 362, 25, 25);
+    b3_mute->setBounds (691, 362, 25, 25);
 
     b3_bypass.reset (new juce::ToggleButton ("b3_bypass"));
     addAndMakeVisible (b3_bypass.get());
     b3_bypass->setButtonText (juce::String());
     b3_bypass->addListener (this);
 
-    b3_bypass->setBounds (772, 396, 25, 25);
+    b3_bypass->setBounds (691, 397, 25, 25);
 
     lowFreqSlider.reset (new juce::Slider ("lowFreqSlider"));
     addAndMakeVisible (lowFreqSlider.get());
@@ -330,7 +330,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     lowFreqSlider->setTextBoxStyle (juce::Slider::NoTextBox, false, 80, 20);
     lowFreqSlider->addListener (this);
 
-    lowFreqSlider->setBounds (74, 100, 80, 80);
+    lowFreqSlider->setBounds (28, 100, 80, 80);
 
     highFreqSlider.reset (new juce::Slider ("highFreqSlider"));
     addAndMakeVisible (highFreqSlider.get());
@@ -339,7 +339,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     highFreqSlider->setTextBoxStyle (juce::Slider::NoTextBox, false, 80, 20);
     highFreqSlider->addListener (this);
 
-    highFreqSlider->setBounds (74, 217, 80, 80);
+    highFreqSlider->setBounds (28, 217, 80, 80);
 
     inputGainSlider.reset (new juce::Slider ("inputGainSlider"));
     addAndMakeVisible (inputGainSlider.get());
@@ -349,7 +349,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     inputGainSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     inputGainSlider->addListener (this);
 
-    inputGainSlider->setBounds (746, 100, 80, 80);
+    inputGainSlider->setBounds (673, 100, 80, 80);
 
     outputGainSlider.reset (new juce::Slider ("outputGainSlider"));
     addAndMakeVisible (outputGainSlider.get());
@@ -359,7 +359,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     outputGainSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
     outputGainSlider->addListener (this);
 
-    outputGainSlider->setBounds (746, 217, 80, 80);
+    outputGainSlider->setBounds (673, 217, 80, 80);
 
     currentPresetLabel.reset (new juce::TextEditor ("currentPresetLabel"));
     addAndMakeVisible (currentPresetLabel.get());
@@ -373,48 +373,48 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     currentPresetLabel->setColour (juce::TextEditor::outlineColourId, juce::Colour (0x00ffffff));
     currentPresetLabel->setText (juce::String());
 
-    currentPresetLabel->setBounds (590, 10, 200, 35);
+    currentPresetLabel->setBounds (530, 13, 200, 35);
 
     savePresetBtn.reset (new IconButtons ("saveBTN", IconsPathData::saveIconPathData,sizeof(IconsPathData::saveIconPathData), 50,50
                                           ));
     addAndMakeVisible (savePresetBtn.get());
     savePresetBtn->setName ("savePresetBtn");
 
-    savePresetBtn->setBounds (424, 11, 38, 38);
+    savePresetBtn->setBounds (378, 14, 33, 33);
 
     undoBtn.reset (new IconButtons ("undoBTN", IconsPathData::undoIconPathData, sizeof(IconsPathData::undoIconPathData) ,50, 50));
     addAndMakeVisible (undoBtn.get());
     undoBtn->setName ("undoBtn");
 
-    undoBtn->setBounds (281, 11, 38, 38);
+    undoBtn->setBounds (261, 14, 33, 33);
 
     redoBtn.reset (new IconButtons ("redoBTN", IconsPathData::redoIconPathData, sizeof(IconsPathData::redoIconPathData), 50, 50
                                     ));
     addAndMakeVisible (redoBtn.get());
     redoBtn->setName ("redoBtn");
 
-    redoBtn->setBounds (337, 11, 38, 38);
+    redoBtn->setBounds (306, 14, 33, 33);
 
     loadPresetBtn.reset (new IconButtons ("loadBTN", IconsPathData::loadIconPathData,sizeof(IconsPathData::loadIconPathData), 50,50
                                           ));
     addAndMakeVisible (loadPresetBtn.get());
     loadPresetBtn->setName ("loadPresetBtn");
 
-    loadPresetBtn->setBounds (476, 11, 38, 38);
+    loadPresetBtn->setBounds (418, 14, 33, 33);
 
     prevPresetBtn.reset (new IconButtons ("prevPresetBTN", IconsPathData::prevIconPathData,sizeof(IconsPathData::prevIconPathData), 40,40
                                           ));
     addAndMakeVisible (prevPresetBtn.get());
     prevPresetBtn->setName ("prevPresetBtn");
 
-    prevPresetBtn->setBounds (544, 11, 38, 38);
+    prevPresetBtn->setBounds (491, 14, 33, 33);
 
     nextPresetBtn.reset (new IconButtons ("nextPresetBTN", IconsPathData::nextIconPathData,sizeof(IconsPathData::nextIconPathData), 40,40
                                           ));
     addAndMakeVisible (nextPresetBtn.get());
     nextPresetBtn->setName ("nextPresetBtn");
 
-    nextPresetBtn->setBounds (800, 11, 38, 38);
+    nextPresetBtn->setBounds (736, 14, 33, 33);
 
 
     //[UserPreSize]
@@ -543,7 +543,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
 
     //[/UserPreSize]
 
-    setSize (900, 600);
+    setSize (780, 600);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -657,658 +657,7 @@ void PluginEditor::paint (juce::Graphics& g)
     g.fillAll (juce::Colour (0xff0d0d1b));
 
     {
-        int x = 47, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             184.0f - 47.0f + x,
-                                             472.0f - 344.0f + y,
-                                             fillColour2,
-                                             328.0f - 47.0f + x,
-                                             344.0f - 344.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 49, y = 415, width = 90, height = 30;
-        juce::String text (TRANS("THRESHOLD"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 139, y = 415, width = 80, height = 30;
-        juce::String text (TRANS("RATIO"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 64, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("ATTACK"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 149, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("RELEASE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 234, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("KNEE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 64, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 149, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("MAKEUP"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 234, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("DRY/WET"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 254, y = 360, width = 50, height = 30;
-        juce::String text (TRANS("MUTE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 254, y = 394, width = 50, height = 30;
-        juce::String text (TRANS("BYPASS"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 319, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             456.0f - 319.0f + x,
-                                             472.0f - 344.0f + y,
-                                             fillColour2,
-                                             592.0f - 319.0f + x,
-                                             344.0f - 344.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 321, y = 415, width = 90, height = 30;
-        juce::String text (TRANS("THRESHOLD"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 411, y = 415, width = 80, height = 30;
-        juce::String text (TRANS("RATIO"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 336, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("ATTACK"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 421, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("RELEASE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 506, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("KNEE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 336, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 421, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("MAKEUP"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 506, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("DRY/WET"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 526, y = 360, width = 50, height = 30;
-        juce::String text (TRANS("MUTE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 526, y = 394, width = 50, height = 30;
-        juce::String text (TRANS("BYPASS"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 591, y = 344, width = 262, height = 246;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d0d);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             720.0f - 591.0f + x,
-                                             472.0f - 344.0f + y,
-                                             fillColour2,
-                                             584.0f - 591.0f + x,
-                                             312.0f - 344.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 593, y = 415, width = 90, height = 30;
-        juce::String text (TRANS("THRESHOLD"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 683, y = 415, width = 80, height = 30;
-        juce::String text (TRANS("RATIO"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 608, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("ATTACK"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 693, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("RELEASE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 778, y = 487, width = 60, height = 30;
-        juce::String text (TRANS("KNEE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 608, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 693, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("MAKEUP"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 778, y = 563, width = 60, height = 30;
-        juce::String text (TRANS("DRY/WET"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 798, y = 360, width = 50, height = 30;
-        juce::String text (TRANS("MUTE"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 798, y = 394, width = 50, height = 30;
-        juce::String text (TRANS("BYPASS"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centredLeft, true);
-    }
-
-    {
-        int x = 47, y = 60, width = 133, height = 274;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             120.0f - 47.0f + x,
-                                             200.0f - 60.0f + y,
-                                             fillColour2,
-                                             184.0f - 47.0f + x,
-                                             56.0f - 60.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 720, y = 60, width = 133, height = 274;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             784.0f - 720.0f + x,
-                                             192.0f - 60.0f + y,
-                                             fillColour2,
-                                             856.0f - 720.0f + x,
-                                             48.0f - 60.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 720, y = 170, width = 133, height = 30;
-        juce::String text (TRANS("INPUT GAIN"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 720, y = 287, width = 133, height = 30;
-        juce::String text (TRANS("OUTPUT GAIN"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 47, y = 170, width = 133, height = 30;
-        juce::String text (TRANS("LOW - MID"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 47, y = 287, width = 133, height = 30;
-        juce::String text (TRANS("MID - HIGH"));
-        juce::Colour fillColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
-        g.drawText (text, x, y, width, height,
-                    juce::Justification::centred, true);
-    }
-
-    {
-        int x = 475, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             320.0f - 475.0f + x,
-                                             32.0f - 10.0f + y,
-                                             fillColour2,
-                                             328.0f - 475.0f + x,
-                                             16.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 190, y = 60, width = 520, height = 274;
-        juce::Colour fillColour1 = juce::Colour (0xff0d0d1b), fillColour2 = juce::Colour (0xa9ffffff);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             450.0f - 190.0f + x,
-                                             248.0f - 60.0f + y,
-                                             fillColour2,
-                                             450.0f - 190.0f + x,
-                                             static_cast<float> (-200) - 60.0f + y,
-                                             false));
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 423, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             267.0f - 423.0f + x,
-                                             28.0f - 10.0f + y,
-                                             fillColour2,
-                                             277.0f - 423.0f + x,
-                                             19.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 280, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             267.0f - 280.0f + x,
-                                             28.0f - 10.0f + y,
-                                             fillColour2,
-                                             277.0f - 280.0f + x,
-                                             19.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 336, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             267.0f - 336.0f + x,
-                                             28.0f - 10.0f + y,
-                                             fillColour2,
-                                             277.0f - 336.0f + x,
-                                             19.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 543, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             320.0f - 543.0f + x,
-                                             32.0f - 10.0f + y,
-                                             fillColour2,
-                                             328.0f - 543.0f + x,
-                                             16.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 799, y = 10, width = 40, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             320.0f - 799.0f + x,
-                                             32.0f - 10.0f + y,
-                                             fillColour2,
-                                             328.0f - 799.0f + x,
-                                             16.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 590, y = 10, width = 200, height = 40;
-        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff171730);
-        juce::Colour strokeColour = juce::Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             320.0f - 590.0f + x,
-                                             32.0f - 10.0f + y,
-                                             fillColour2,
-                                             328.0f - 590.0f + x,
-                                             16.0f - 10.0f + y,
-                                             true));
-        g.fillRect (x, y, width, height);
-        g.setColour (strokeColour);
-        g.drawRect (x, y, width, height, 1);
-
-    }
-
-    {
-        int x = 40, y = 10, width = 232, height = 38;
+        int x = 2, y = 9, width = 232, height = 40;
         juce::String text (TRANS("DYNAMYTE"));
         juce::Colour fillColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -1320,12 +669,729 @@ void PluginEditor::paint (juce::Graphics& g)
     }
 
     {
-        int x = 48, y = 11, width = 216, height = 38;
+        int x = 10, y = 340, width = 250, height = 250;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             135.0f - 10.0f + x,
+                                             469.0f - 340.0f + y,
+                                             fillColour2,
+                                             258.0f - 10.0f + x,
+                                             341.0f - 340.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 10, y = 340, width = 25, height = 11;
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 10, y = 10, width = 216, height = 40;
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (strokeColour);
         g.drawRect (x, y, width, height, 3);
+
+    }
+
+    {
+        int x = 10, y = 411, width = 90, height = 30;
+        juce::String text (TRANS("THRESHOLD"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 95, y = 411, width = 80, height = 30;
+        juce::String text (TRANS("RATIO"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 25, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("ATTACK"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 105, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("RELEASE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 185, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("KNEE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 25, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("GAIN"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 105, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("MAKEUP"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 185, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("DRY/WET"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 205, y = 360, width = 50, height = 30;
+        juce::String text (TRANS("MUTE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 205, y = 394, width = 50, height = 30;
+        juce::String text (TRANS("BYPASS"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 265, y = 340, width = 250, height = 250;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             391.0f - 265.0f + x,
+                                             470.0f - 340.0f + y,
+                                             fillColour2,
+                                             514.0f - 265.0f + x,
+                                             340.0f - 340.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 265, y = 411, width = 90, height = 30;
+        juce::String text (TRANS("THRESHOLD"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 350, y = 411, width = 80, height = 30;
+        juce::String text (TRANS("RATIO"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 280, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("ATTACK"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 360, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("RELEASE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 440, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("KNEE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 280, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("GAIN"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 360, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("MAKEUP"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 440, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("DRY/WET"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 460, y = 360, width = 50, height = 30;
+        juce::String text (TRANS("MUTE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 460, y = 394, width = 50, height = 30;
+        juce::String text (TRANS("BYPASS"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 520, y = 340, width = 250, height = 250;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d0d);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             645.0f - 520.0f + x,
+                                             471.0f - 340.0f + y,
+                                             fillColour2,
+                                             768.0f - 520.0f + x,
+                                             341.0f - 340.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 520, y = 411, width = 90, height = 30;
+        juce::String text (TRANS("THRESHOLD"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 605, y = 411, width = 80, height = 30;
+        juce::String text (TRANS("RATIO"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 535, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("ATTACK"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 615, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("RELEASE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 695, y = 483, width = 60, height = 30;
+        juce::String text (TRANS("KNEE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 535, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("GAIN"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 615, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("MAKEUP"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 695, y = 559, width = 60, height = 30;
+        juce::String text (TRANS("DRY/WET"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 715, y = 360, width = 50, height = 30;
+        juce::String text (TRANS("MUTE"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 715, y = 394, width = 50, height = 30;
+        juce::String text (TRANS("BYPASS"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 13.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
+    {
+        int x = 10, y = 55, width = 115, height = 280;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             72.0f - 10.0f + x,
+                                             192.0f - 55.0f + y,
+                                             fillColour2,
+                                             123.0f - 10.0f + x,
+                                             56.0f - 55.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 655, y = 55, width = 115, height = 280;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff0d0d1b);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             716.0f - 655.0f + x,
+                                             199.0f - 55.0f + y,
+                                             fillColour2,
+                                             768.0f - 655.0f + x,
+                                             56.0f - 55.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 655, y = 170, width = 115, height = 30;
+        juce::String text (TRANS("INPUT GAIN"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 655, y = 287, width = 115, height = 30;
+        juce::String text (TRANS("OUTPUT GAIN"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 10, y = 170, width = 115, height = 30;
+        juce::String text (TRANS("LOW - MID"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 10, y = 287, width = 115, height = 30;
+        juce::String text (TRANS("MID - HIGH"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 17.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centred, true);
+    }
+
+    {
+        int x = 417, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             434.0f - 417.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             451.0f - 417.0f + x,
+                                             13.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 130, y = 55, width = 520, height = 280;
+        juce::Colour fillColour1 = juce::Colour (0xff0d0d1b), fillColour2 = juce::Colour (0xa9ffffff);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             390.0f - 130.0f + x,
+                                             250.0f - 55.0f + y,
+                                             fillColour2,
+                                             390.0f - 130.0f + x,
+                                             static_cast<float> (-300) - 55.0f + y,
+                                             false));
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 377, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             394.0f - 377.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             411.0f - 377.0f + x,
+                                             13.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 260, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             277.0f - 260.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             293.0f - 260.0f + x,
+                                             14.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 305, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             322.0f - 305.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             338.0f - 305.0f + x,
+                                             14.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 490, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             507.0f - 490.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             524.0f - 490.0f + x,
+                                             13.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 735, y = 13, width = 35, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             752.0f - 735.0f + x,
+                                             30.0f - 13.0f + y,
+                                             fillColour2,
+                                             769.0f - 735.0f + x,
+                                             13.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 530, y = 13, width = 200, height = 35;
+        juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff171730);
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (juce::ColourGradient (fillColour1,
+                                             320.0f - 530.0f + x,
+                                             32.0f - 13.0f + y,
+                                             fillColour2,
+                                             328.0f - 530.0f + x,
+                                             16.0f - 13.0f + y,
+                                             true));
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 12, y = 340, width = 20, height = 10;
+        juce::String text (TRANS("LOW"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 11.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::topLeft, true);
+    }
+
+    {
+        int x = 267, y = 340, width = 20, height = 10;
+        juce::String text (TRANS("MID"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 11.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::topLeft, true);
+    }
+
+    {
+        int x = 522, y = 340, width = 25, height = 10;
+        juce::String text (TRANS("HIGH"));
+        juce::Colour fillColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font ("Microsoft YaHei", 11.00f, juce::Font::plain).withTypefaceStyle ("Bold"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::topLeft, true);
+    }
+
+    {
+        int x = 265, y = 340, width = 22, height = 11;
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 520, y = 340, width = 27, height = 11;
+        juce::Colour strokeColour = juce::Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
 
     }
 
@@ -1593,324 +1659,339 @@ BEGIN_JUCER_METADATA
                  parentClasses="public juce::AudioProcessorEditor" constructorParams="DynamyteAudioProcessor&amp; p, AudioProcessorValueTreeState&amp; vts"
                  variableInitialisers="AudioProcessorEditor(&amp;p), processor(p), valueTreeState(vts),&#10;presetManager(vts, p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="900" initialHeight="600">
+                 fixedSize="1" initialWidth="780" initialHeight="600">
   <BACKGROUND backgroundColour="ff0d0d1b">
-    <RECT pos="47 344 262 246" fill=" radial: 184 472, 328 344, 0=ff48468c, 1=ff0d0d1b"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <TEXT pos="49 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="139 415 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="64 487 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="149 487 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="234 487 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="64 563 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="149 563 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="234 563 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="254 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <TEXT pos="254 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="319 344 262 246" fill=" radial: 456 472, 592 344, 0=ff48468c, 1=ff0d0d1b"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <TEXT pos="321 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="411 415 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="336 487 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="421 487 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="506 487 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="336 563 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="421 563 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="506 563 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="526 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <TEXT pos="526 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="591 344 262 246" fill=" radial: 720 472, 584 312, 0=ff48468c, 1=ff0d0d0d"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <TEXT pos="593 415 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="683 415 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="608 487 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="693 487 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="778 487 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="608 563 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="693 563 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="778 563 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="798 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <TEXT pos="798 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
-          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
-          italic="0" justification="33" typefaceStyle="Bold"/>
-    <RECT pos="47 60 133 274" fill=" radial: 120 200, 184 56, 0=ff48468c, 1=ff0d0d1b"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="720 60 133 274" fill=" radial: 784 192, 856 48, 0=ff48468c, 1=ff0d0d1b"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <TEXT pos="720 170 133 30" fill="solid: ffffffff" hasStroke="0" text="INPUT GAIN"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="720 287 133 30" fill="solid: ffffffff" hasStroke="0" text="OUTPUT GAIN"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="47 170 133 30" fill="solid: ffffffff" hasStroke="0" text="LOW - MID"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="47 287 133 30" fill="solid: ffffffff" hasStroke="0" text="MID - HIGH"
-          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
-          italic="0" justification="36" typefaceStyle="Bold"/>
-    <RECT pos="475 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="190 60 520 274" fill="linear: 450 248, 450 -200, 0=ff0d0d1b, 1=a9ffffff"
-          hasStroke="0"/>
-    <RECT pos="423 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="280 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="336 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="543 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="799 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="590 10 200 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff171730"
-          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <TEXT pos="40 10 232 38" fill="solid: ffffffff" hasStroke="0" text="DYNAMYTE"
+    <TEXT pos="2 9 232 40" fill="solid: ffffffff" hasStroke="0" text="DYNAMYTE"
           fontname="Microsoft YaHei" fontsize="43.3" kerning="0.044" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <RECT pos="48 11 216 38" fill="solid: ffffff" hasStroke="1" stroke="2.7, mitered, butt"
+    <RECT pos="10 340 250 250" fill=" radial: 135 469, 258 341, 0=ff48468c, 1=ff0d0d1b"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="10 340 25 11" fill="solid: 2aa580" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: ffffffff"/>
+    <RECT pos="10 10 216 40" fill="solid: ffffff" hasStroke="1" stroke="2.7, mitered, butt"
+          strokeColour="solid: ffffffff"/>
+    <TEXT pos="10 411 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="95 411 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="25 483 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="105 483 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="185 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="25 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="105 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="185 559 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="205 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <TEXT pos="205 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <RECT pos="265 340 250 250" fill=" radial: 391 470, 514 340, 0=ff48468c, 1=ff0d0d1b"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <TEXT pos="265 411 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="350 411 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="280 483 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="360 483 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="440 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="280 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="360 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="440 559 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="460 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <TEXT pos="460 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <RECT pos="520 340 250 250" fill=" radial: 645 471, 768 341, 0=ff48468c, 1=ff0d0d0d"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <TEXT pos="520 411 90 30" fill="solid: ffffffff" hasStroke="0" text="THRESHOLD"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="605 411 80 30" fill="solid: ffffffff" hasStroke="0" text="RATIO"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="535 483 60 30" fill="solid: ffffffff" hasStroke="0" text="ATTACK"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="615 483 60 30" fill="solid: ffffffff" hasStroke="0" text="RELEASE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="695 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="535 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="615 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="695 559 60 30" fill="solid: ffffffff" hasStroke="0" text="DRY/WET"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="715 360 50 30" fill="solid: ffffffff" hasStroke="0" text="MUTE"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <TEXT pos="715 394 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
+          fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
+    <RECT pos="10 55 115 280" fill=" radial: 72 192, 123 56, 0=ff48468c, 1=ff0d0d1b"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="655 55 115 280" fill=" radial: 716 199, 768 56, 0=ff48468c, 1=ff0d0d1b"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <TEXT pos="655 170 115 30" fill="solid: ffffffff" hasStroke="0" text="INPUT GAIN"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="655 287 115 30" fill="solid: ffffffff" hasStroke="0" text="OUTPUT GAIN"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="10 170 115 30" fill="solid: ffffffff" hasStroke="0" text="LOW - MID"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="10 287 115 30" fill="solid: ffffffff" hasStroke="0" text="MID - HIGH"
+          fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
+          italic="0" justification="36" typefaceStyle="Bold"/>
+    <RECT pos="417 13 35 35" fill=" radial: 434 30, 451 13, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="130 55 520 280" fill="linear: 390 250, 390 -300, 0=ff0d0d1b, 1=a9ffffff"
+          hasStroke="0"/>
+    <RECT pos="377 13 35 35" fill=" radial: 394 30, 411 13, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="260 13 35 35" fill=" radial: 277 30, 293 14, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="305 13 35 35" fill=" radial: 322 30, 338 14, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="490 13 35 35" fill=" radial: 507 30, 524 13, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="735 13 35 35" fill=" radial: 752 30, 769 13, 0=ff48468c, 1=ff252453"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <RECT pos="530 13 200 35" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff171730"
+          hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
+    <TEXT pos="12 340 20 10" fill="solid: ffffffff" hasStroke="0" text="LOW"
+          fontname="Microsoft YaHei" fontsize="11.0" kerning="0.0" bold="1"
+          italic="0" justification="9" typefaceStyle="Bold"/>
+    <TEXT pos="267 340 20 10" fill="solid: ffffffff" hasStroke="0" text="MID"
+          fontname="Microsoft YaHei" fontsize="11.0" kerning="0.0" bold="1"
+          italic="0" justification="9" typefaceStyle="Bold"/>
+    <TEXT pos="522 340 25 10" fill="solid: ffffffff" hasStroke="0" text="HIGH"
+          fontname="Microsoft YaHei" fontsize="11.0" kerning="0.0" bold="1"
+          italic="0" justification="9" typefaceStyle="Bold"/>
+    <RECT pos="265 340 22 11" fill="solid: a58c2a" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: ffffffff"/>
+    <RECT pos="520 340 27 11" fill="solid: a58c2a" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ffffffff"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
-                    virtualName="" explicitFocusOrder="0" pos="190 60 520 274" class="FFTperformer"
+                    virtualName="" explicitFocusOrder="0" pos="130 55 520 280" class="FFTperformer"
                     params="p.getSampleRate()"/>
   <SLIDER name="b1_attack" id="4a45c8fdcf5d8073" memberName="b1_attack"
-          virtualName="" explicitFocusOrder="0" pos="64 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="25 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_release" id="ff9a5511ead93a6e" memberName="b1_release"
-          virtualName="" explicitFocusOrder="0" pos="149 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="105 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_threshold" id="9f4e0b7d80430453" memberName="b1_threshold"
-          virtualName="" explicitFocusOrder="0" pos="54 350 80 80" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="15 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_ratio" id="4864fddaf98ac02e" memberName="b1_ratio" virtualName=""
-          explicitFocusOrder="0" pos="139 350 80 80" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="95 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_inputGain" id="47dd92111241ed5f" memberName="b1_inputGain"
-          virtualName="" explicitFocusOrder="0" pos="64 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="25 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_knee" id="96ec78512302af1c" memberName="b1_knee" virtualName=""
-          explicitFocusOrder="0" pos="234 441 60 60" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="185 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_makeupGain" id="66f0c044a7598b95" memberName="b1_makeupGain"
-          virtualName="" explicitFocusOrder="0" pos="149 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="105 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b1_dryWet" id="d1778d8276697958" memberName="b1_dryWet"
-          virtualName="" explicitFocusOrder="0" pos="234 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="185 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <TOGGLEBUTTON name="b1_mute" id="3ce68044eb989809" memberName="b1_mute" virtualName=""
-                explicitFocusOrder="0" pos="228 362 25 25" buttonText="" connectedEdges="0"
+                explicitFocusOrder="0" pos="181 362 25 25" buttonText="" connectedEdges="0"
                 needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="b1_bypass" id="84381f6f795c68e7" memberName="b1_bypass"
-                virtualName="" explicitFocusOrder="0" pos="228 396 25 25" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="181 397 25 25" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <SLIDER name="b2_attack" id="fb67cfe464055ab5" memberName="b2_attack"
-          virtualName="" explicitFocusOrder="0" pos="336 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="280 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_release" id="9ab9d780fce74932" memberName="b2_release"
-          virtualName="" explicitFocusOrder="0" pos="421 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="360 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_threshold" id="3187aa0cda8ca971" memberName="b2_threshold"
-          virtualName="" explicitFocusOrder="0" pos="326 350 80 80" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="270 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_ratio" id="e7d2b36804661ba5" memberName="b2_ratio" virtualName=""
-          explicitFocusOrder="0" pos="411 350 80 80" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="350 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_inputGain" id="7e27db65ecad98e0" memberName="b2_inputGain"
-          virtualName="" explicitFocusOrder="0" pos="336 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="280 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_knee" id="38e2d977ee0e91b6" memberName="b2_knee" virtualName=""
-          explicitFocusOrder="0" pos="506 441 60 60" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="440 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_makeupGain" id="75ac4f24a2394689" memberName="b2_makeupGain"
-          virtualName="" explicitFocusOrder="0" pos="421 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="360 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b2_dryWet" id="3e3744f5bd108fe1" memberName="b2_dryWet"
-          virtualName="" explicitFocusOrder="0" pos="506 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="440 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <TOGGLEBUTTON name="b2_mute" id="923671afc270c4b4" memberName="b2_mute" virtualName=""
-                explicitFocusOrder="0" pos="500 362 25 25" buttonText="" connectedEdges="0"
+                explicitFocusOrder="0" pos="436 362 25 25" buttonText="" connectedEdges="0"
                 needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="b2_bypass" id="7a7afa1a99ced594" memberName="b2_bypass"
-                virtualName="" explicitFocusOrder="0" pos="500 396 25 25" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="436 397 25 25" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <SLIDER name="b3_attack" id="569afeb08a833302" memberName="b3_attack"
-          virtualName="" explicitFocusOrder="0" pos="608 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="535 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_release" id="e0e7b128a641f6da" memberName="b3_release"
-          virtualName="" explicitFocusOrder="0" pos="693 441 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="615 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_threshold" id="55eb8f6728fc836" memberName="b3_threshold"
-          virtualName="" explicitFocusOrder="0" pos="598 350 80 80" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="525 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_ratio" id="337a7d4fa4eaa9b3" memberName="b3_ratio" virtualName=""
-          explicitFocusOrder="0" pos="683 350 80 80" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="605 350 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_inputGain" id="76ecd8c750bca16a" memberName="b3_inputGain"
-          virtualName="" explicitFocusOrder="0" pos="608 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="535 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_knee" id="eebd31fcbf873870" memberName="b3_knee" virtualName=""
-          explicitFocusOrder="0" pos="778 441 60 60" textboxoutline="8e989b"
+          explicitFocusOrder="0" pos="695 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_makeupGain" id="a5532efb28c24498" memberName="b3_makeupGain"
-          virtualName="" explicitFocusOrder="0" pos="693 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="615 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="b3_dryWet" id="23f86bd8a009e09e" memberName="b3_dryWet"
-          virtualName="" explicitFocusOrder="0" pos="778 516 60 60" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="695 516 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="13" skewFactor="1.0"
           needsCallback="1"/>
   <TOGGLEBUTTON name="b3_mute" id="93aa170d11770451" memberName="b3_mute" virtualName=""
-                explicitFocusOrder="0" pos="772 362 25 25" buttonText="" connectedEdges="0"
+                explicitFocusOrder="0" pos="691 362 25 25" buttonText="" connectedEdges="0"
                 needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="b3_bypass" id="1509fa999a939d85" memberName="b3_bypass"
-                virtualName="" explicitFocusOrder="0" pos="772 396 25 25" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="691 397 25 25" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <SLIDER name="lowFreqSlider" id="d25531ef0bed6ef6" memberName="lowFreqSlider"
-          virtualName="" explicitFocusOrder="0" pos="74 100 80 80" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="28 100 80 80" min="0.0"
           max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="highFreqSlider" id="a57000eba8ccc668" memberName="highFreqSlider"
-          virtualName="" explicitFocusOrder="0" pos="74 217 80 80" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="28 217 80 80" min="0.0"
           max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="inputGainSlider" id="17ba4c1f3337bd0b" memberName="inputGainSlider"
-          virtualName="" explicitFocusOrder="0" pos="746 100 80 80" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="673 100 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="outputGainSlider" id="ca66be4fde161ab8" memberName="outputGainSlider"
-          virtualName="" explicitFocusOrder="0" pos="746 217 80 80" textboxoutline="8e989b"
+          virtualName="" explicitFocusOrder="0" pos="673 217 80 80" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <TEXTEDITOR name="currentPresetLabel" id="6b8516459c37fdfa" memberName="currentPresetLabel"
-              virtualName="" explicitFocusOrder="0" pos="590 10 200 35" bkgcol="495358"
+              virtualName="" explicitFocusOrder="0" pos="530 13 200 35" bkgcol="495358"
               outlinecol="ffffff" initialText="" multiline="0" retKeyStartsLine="0"
               readonly="1" scrollbars="1" caret="0" popupmenu="1"/>
   <GENERICCOMPONENT name="savePresetBtn" id="b52e5d83bea0c61c" memberName="savePresetBtn"
-                    virtualName="" explicitFocusOrder="0" pos="424 11 38 38" class="IconButtons"
+                    virtualName="" explicitFocusOrder="0" pos="378 14 33 33" class="IconButtons"
                     params="&quot;saveBTN&quot;, IconsPathData::saveIconPathData,sizeof(IconsPathData::saveIconPathData), 50,50&#10;"/>
   <GENERICCOMPONENT name="undoBtn" id="16dad68d7b3a4fc6" memberName="undoBtn" virtualName=""
-                    explicitFocusOrder="0" pos="281 11 38 38" class="IconButtons"
+                    explicitFocusOrder="0" pos="261 14 33 33" class="IconButtons"
                     params="&quot;undoBTN&quot;, IconsPathData::undoIconPathData, sizeof(IconsPathData::undoIconPathData) ,50, 50"/>
   <GENERICCOMPONENT name="redoBtn" id="36b84d8300cb08ff" memberName="redoBtn" virtualName=""
-                    explicitFocusOrder="0" pos="337 11 38 38" class="IconButtons"
+                    explicitFocusOrder="0" pos="306 14 33 33" class="IconButtons"
                     params="&quot;redoBTN&quot;, IconsPathData::redoIconPathData, sizeof(IconsPathData::redoIconPathData), 50, 50&#10;"/>
   <GENERICCOMPONENT name="loadPresetBtn" id="26eb954970370da9" memberName="loadPresetBtn"
-                    virtualName="" explicitFocusOrder="0" pos="476 11 38 38" class="IconButtons"
+                    virtualName="" explicitFocusOrder="0" pos="418 14 33 33" class="IconButtons"
                     params="&quot;loadBTN&quot;, IconsPathData::loadIconPathData,sizeof(IconsPathData::loadIconPathData), 50,50&#10;"/>
   <GENERICCOMPONENT name="prevPresetBtn" id="a902cafffce9e86d" memberName="prevPresetBtn"
-                    virtualName="" explicitFocusOrder="0" pos="544 11 38 38" class="IconButtons"
+                    virtualName="" explicitFocusOrder="0" pos="491 14 33 33" class="IconButtons"
                     params="&quot;prevPresetBTN&quot;, IconsPathData::prevIconPathData,sizeof(IconsPathData::prevIconPathData), 40,40&#10;"/>
   <GENERICCOMPONENT name="nextPresetBtn" id="8a7bbd96234b3cf0" memberName="nextPresetBtn"
-                    virtualName="" explicitFocusOrder="0" pos="800 11 38 38" class="IconButtons"
+                    virtualName="" explicitFocusOrder="0" pos="736 14 33 33" class="IconButtons"
                     params="&quot;nextPresetBTN&quot;, IconsPathData::nextIconPathData,sizeof(IconsPathData::nextIconPathData), 40,40&#10;"/>
 </JUCER_COMPONENT>
 

@@ -144,12 +144,12 @@ void FFTperformer::paintGrid(Graphics& g)
     
     // draw horizontal dB lines & labels
     auto space = height * 0.1f;
-    for (int i = 0; i <= 10; ++i)
+    for (int i = 1; i <= 10; ++i)
     {
         g.setOpacity(0.5f);
         g.drawHorizontalLine(space * i, 0, getWidth());
         g.setOpacity(1.0f);
-        g.drawFittedText(String(-i * 10), width, space * i + 1.0f, labelW, labelH, Justification::right, 1);
+        g.drawFittedText(String(-i * 10), width, space * i - labelH, labelW, labelH, Justification::right, 1);
     }
 
     // draw freq text labels
