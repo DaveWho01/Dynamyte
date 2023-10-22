@@ -1185,10 +1185,10 @@ void PluginEditor::paint (juce::Graphics& g)
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
                                              450.0f - 190.0f + x,
-                                             200.0f - 60.0f + y,
+                                             248.0f - 60.0f + y,
                                              fillColour2,
                                              450.0f - 190.0f + x,
-                                             static_cast<float> (-300) - 60.0f + y,
+                                             static_cast<float> (-200) - 60.0f + y,
                                              false));
         g.fillRect (x, y, width, height);
     }
@@ -1709,7 +1709,7 @@ BEGIN_JUCER_METADATA
           italic="0" justification="36" typefaceStyle="Bold"/>
     <RECT pos="475 10 40 40" fill=" radial: 320 32, 328 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="190 60 520 274" fill="linear: 450 200, 450 -300, 0=ff0d0d1b, 1=a9ffffff"
+    <RECT pos="190 60 520 274" fill="linear: 450 248, 450 -200, 0=ff0d0d1b, 1=a9ffffff"
           hasStroke="0"/>
     <RECT pos="423 10 40 40" fill=" radial: 267 28, 277 19, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>

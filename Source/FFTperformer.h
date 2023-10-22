@@ -31,7 +31,8 @@ private:
     AudioBuffer<float> fftData;
     int fifoIndex = 0;
     bool nextFFTBlockReady = false;
-    float scopeData[scopeSize];
+    float scopeData[scopeSize] = { 0 };
+    float freqBins[scopeSize] = { 0 };
 
     CircularBuffer* processorData;
     Atomic<bool>* bufferCopied;
@@ -40,7 +41,6 @@ private:
     float oldScopeData[scopeSize];
 
     // Grid
-
     double sr;
     int frequenciesToPlot[28] = { 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000 };
 
