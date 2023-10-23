@@ -27,6 +27,8 @@ public:
 
 	void setLowCrossoverFreq(float newValue);
 	void setHighCrossoverFreq(float newValue);
+	float getLowCrossoverFreq();
+	float getHighCrossoverFreq();
 
 private:
 

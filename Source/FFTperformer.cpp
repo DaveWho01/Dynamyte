@@ -46,10 +46,12 @@ void FFTperformer::timerCallback()
         repaint();
 }
 
-void FFTperformer::connectToBufferPointer(CircularBuffer& buffer, Atomic<bool>& FFTmutex)
+void FFTperformer::connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq)
 {
     processorData = &buffer;
     bufferCopied = &FFTmutex;
+    lowXoverFreq = &lowCrossoverFreq;
+    highXoverFreq = &highCrossoverFreq;
 }
 
 void FFTperformer::copyToFFTBuffer()
@@ -60,6 +62,13 @@ void FFTperformer::copyToFFTBuffer()
         processorData->getData(0, fftData, 2048);
         bufferCopied->set(true);
     }
+}
+
+inline float FFTperformer::logTransformInRange0to1(const float between0and1)
+{
+    const float minimum = 1.0f;
+    const float maximum = 1000.0f;
+    return log10(minimum + ((maximum - minimum) * between0and1)) / log10(maximum);
 }
 
 void FFTperformer::paint(Graphics& g)
@@ -114,12 +123,6 @@ void FFTperformer::paint(Graphics& g)
     g.strokePath(line, PathStrokeType(1.0f));
 }
 
-inline float FFTperformer::logTransformInRange0to1(const float between0and1)
-{
-    const float minimum = 1.0f;
-    const float maximum = 1000.0f;
-    return log10(minimum + ((maximum - minimum) * between0and1)) / log10(maximum);
-}
 
 void FFTperformer::paintGrid(Graphics& g)
 {
@@ -161,6 +164,14 @@ void FFTperformer::paintGrid(Graphics& g)
         g.drawFittedText(labels[i], xPos - (labelW * 0.5f), height + 1.0f, labelW, labelH, Justification::centred, 1);
     }
 
-    
-}
+    // draw xover freqs
 
+    double proportion = *lowXoverFreq / (sr * 0.5);
+    int xPos = logTransformInRange0to1(proportion) * width;
+    g.drawLine(xPos, 0.0f, xPos, height, 2.0f);
+    //g.drawVerticalLine(xPos, 0.0f, height);
+
+    proportion = *highXoverFreq / (sr * 0.5);
+    xPos = logTransformInRange0to1(proportion) * width;
+    g.drawLine(xPos, 0.0f, xPos, height, 2.0f);
+}

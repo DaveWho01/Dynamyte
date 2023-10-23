@@ -24,6 +24,8 @@ DynamyteAudioProcessor::DynamyteAudioProcessor()
     band2Bypass = false;
     band3Bypass = false;
     beenCopied = true;
+    lowCrossoverFreq = bandSplitter.getLowCrossoverFreq();
+    highCrossoverFreq = bandSplitter.getHighCrossoverFreq();
 }
 
 DynamyteAudioProcessor::~DynamyteAudioProcessor()
@@ -264,10 +266,16 @@ void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newVa
     // multiband
 
     if (paramID == Parameters::nameLowCrossFreq)
+    {
         bandSplitter.setLowCrossoverFreq(newValue);
+        lowCrossoverFreq = bandSplitter.getLowCrossoverFreq();
+    }
     
     if (paramID == Parameters::nameHighCrossFreq)
+    {
         bandSplitter.setHighCrossoverFreq(newValue);
+        highCrossoverFreq = bandSplitter.getHighCrossoverFreq();
+    }
 
     if (paramID == Parameters::nameBand1Muted)
         bandSplitter.toggleMuteBand(1, newValue);

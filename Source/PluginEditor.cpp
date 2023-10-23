@@ -537,7 +537,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     currentPresetLabel->setText(presetManager.getCurrentPreset());
 
     // spectrum
-    spectrumVisualizer->connectToBufferPointer(p.bufferForFFT, p.beenCopied);
+    spectrumVisualizer->connectToProcessor(p.bufferForFFT, p.beenCopied, p.lowCrossoverFreq, p.highCrossoverFreq);
 
     this->setLookAndFeel(&dynamyteTheme);
 
@@ -1217,7 +1217,7 @@ void PluginEditor::paint (juce::Graphics& g)
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
                                              390.0f - 130.0f + x,
-                                             250.0f - 55.0f + y,
+                                             230.0f - 55.0f + y,
                                              fillColour2,
                                              390.0f - 130.0f + x,
                                              static_cast<float> (-300) - 55.0f + y,
@@ -1782,7 +1782,7 @@ BEGIN_JUCER_METADATA
           italic="0" justification="36" typefaceStyle="Bold"/>
     <RECT pos="417 13 35 35" fill=" radial: 434 30, 451 13, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="130 55 520 280" fill="linear: 390 250, 390 -300, 0=ff0d0d1b, 1=a9ffffff"
+    <RECT pos="130 55 520 280" fill="linear: 390 230, 390 -300, 0=ff0d0d1b, 1=a9ffffff"
           hasStroke="0"/>
     <RECT pos="377 13 35 35" fill=" radial: 394 30, 411 13, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>

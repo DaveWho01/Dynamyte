@@ -16,10 +16,10 @@ public:
     ~FFTperformer();
     void drawNextFrameOfSpectrum();
     void timerCallback() override;
-    void connectToBufferPointer(CircularBuffer& buffer, Atomic<bool>& FFTmutex);
+    void connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq);
     void copyToFFTBuffer();
-    void paint(Graphics& g);
     inline float logTransformInRange0to1(const float between0and1);
+    void paint(Graphics& g);
     void paintGrid(Graphics& g);
 
 private:
@@ -46,6 +46,9 @@ private:
 
     std::vector<int> frequenciesLabel = { 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000 };
     std::vector<String> labels = { "20", "50", "100", "200", "500", "1k", "2k", "5k", "10k", "20k" };
+
+    // Xover freqs
+    float *lowXoverFreq, *highXoverFreq;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FFTperformer)
 

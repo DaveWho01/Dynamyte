@@ -155,4 +155,14 @@ void BandSplitter::setHighCrossoverFreq(float newValue)
 	AP2.setCutoffFrequency(highCrossFreq);
 }
 
+float BandSplitter::getLowCrossoverFreq()
+{
+	return lowCrossFreq;
+}
+
+float BandSplitter::getHighCrossoverFreq()
+{
+	return highCrossFreq;
+}
+
 
