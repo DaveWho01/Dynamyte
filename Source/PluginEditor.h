@@ -109,6 +109,7 @@ private:
     std::unique_ptr<SliderAttachment> highFreqAttachment;
     std::unique_ptr<SliderAttachment> inputGainAttachment;
     std::unique_ptr<SliderAttachment> outputGainAttachment;
+    std::unique_ptr<ButtonAttachment> genBypassAttachment;
 
     // preset management
     PresetManager presetManager;
@@ -161,6 +162,7 @@ private:
     std::unique_ptr<IconButtons> loadPresetBtn;
     std::unique_ptr<IconButtons> prevPresetBtn;
     std::unique_ptr<IconButtons> nextPresetBtn;
+    std::unique_ptr<juce::ToggleButton> genBypass;
 
 
     //==============================================================================

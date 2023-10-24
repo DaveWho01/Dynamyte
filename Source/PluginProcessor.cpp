@@ -264,7 +264,6 @@ void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newVa
         generalOutputGain.setGain(newValue);
 
     // multiband
-
     if (paramID == Parameters::nameLowCrossFreq)
     {
         bandSplitter.setLowCrossoverFreq(newValue);

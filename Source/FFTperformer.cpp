@@ -130,13 +130,14 @@ void FFTperformer::paintGrid(Graphics& g)
     auto width = getWidth() * 0.95f;
     float labelH = getHeight() * 0.05f;
     float labelW = getWidth() * 0.045f;
+    float lineOpacity = 0.3f;
 
     g.setFont(11.0f);
 
     g.setColour(Colours::white);
 
     // draw vertical freq lines
-    g.setOpacity(0.5f);
+    g.setOpacity(lineOpacity);
     auto maxNofFrequencies = sizeof(frequenciesToPlot) / sizeof(frequenciesToPlot[0]);
     for (int i = 0; i < maxNofFrequencies; ++i)
     {
@@ -149,7 +150,7 @@ void FFTperformer::paintGrid(Graphics& g)
     auto space = height * 0.1f;
     for (int i = 1; i <= 10; ++i)
     {
-        g.setOpacity(0.5f);
+        g.setOpacity(lineOpacity);
         g.drawHorizontalLine(space * i, 0, getWidth());
         g.setOpacity(1.0f);
         g.drawFittedText(String(-i * 10), width, space * i - labelH, labelW, labelH, Justification::right, 1);
