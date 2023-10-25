@@ -29,6 +29,9 @@
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
+
+#define HIDDEN      0.5f
+#define VISIBLE     1.0f
 //[/Headers]
 
 
@@ -52,6 +55,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void setSectionOpacity(std::vector<std::unique_ptr<juce::Slider>>& slidersToHide, bool shouldHide);
     //[/UserMethods]
 
     void paint (juce::Graphics& g) override;
@@ -113,9 +117,6 @@ private:
 
     // preset management
     PresetManager presetManager;
-
-    // icon paths
-
 
     //[/UserVariables]
 

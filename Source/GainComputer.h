@@ -21,6 +21,7 @@ public:
 	void setRatio(float newValue);
 	void setKnee(float newValue);
 
+	float getThreshold();
 
 private:
 

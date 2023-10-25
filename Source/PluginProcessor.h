@@ -57,6 +57,7 @@ public:
     CircularBuffer bufferForFFT;
     Atomic<bool> beenCopied;
     float lowCrossoverFreq, highCrossoverFreq;
+    float band1Threshold, band2Threshold, band3Threshold;
 
 private:
     void parameterChanged(const String& paramID, float newValue) override;
@@ -65,7 +66,6 @@ private:
     double sr;
 
     BandSplitter bandSplitter;
-
 
     AudioBuffer<float> firstBandBuffer;
     AudioBuffer<float> secondBandBuffer;

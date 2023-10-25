@@ -26,6 +26,9 @@ DynamyteAudioProcessor::DynamyteAudioProcessor()
     beenCopied = true;
     lowCrossoverFreq = bandSplitter.getLowCrossoverFreq();
     highCrossoverFreq = bandSplitter.getHighCrossoverFreq();
+    band1Threshold = 0.0f;
+    band2Threshold = 0.0f;
+    band3Threshold = 0.0f;
 }
 
 DynamyteAudioProcessor::~DynamyteAudioProcessor()
@@ -308,7 +311,10 @@ void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newVa
         b1Comp.parameterChanged("MakeupGain", newValue);
 
     if (paramID == Parameters::nameThreshold_1)
+    {
         b1Comp.parameterChanged("Threshold", newValue);
+        band1Threshold = b1Comp.getThreshold();
+    }
 
     if (paramID == Parameters::nameRatio_1)
         b1Comp.parameterChanged("Ratio", newValue);
@@ -334,7 +340,10 @@ void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newVa
         b2Comp.parameterChanged("MakeupGain", newValue);
 
     if (paramID == Parameters::nameThreshold_2)
+    {
         b2Comp.parameterChanged("Threshold", newValue);
+        band2Threshold = b2Comp.getThreshold();
+    }
 
     if (paramID == Parameters::nameRatio_2)
         b2Comp.parameterChanged("Ratio", newValue);
@@ -360,7 +369,10 @@ void DynamyteAudioProcessor::parameterChanged(const String& paramID, float newVa
         b3Comp.parameterChanged("MakeupGain", newValue);
 
     if (paramID == Parameters::nameThreshold_3)
+    {
         b3Comp.parameterChanged("Threshold", newValue);
+        band3Threshold = b3Comp.getThreshold();
+    }
 
     if (paramID == Parameters::nameRatio_3)
         b3Comp.parameterChanged("Ratio", newValue);

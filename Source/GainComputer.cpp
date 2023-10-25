@@ -75,3 +75,8 @@ void GainComputer::setKnee(float newValue)
 {
 	kneeWidth.setTargetValue(newValue);
 }
+
+float GainComputer::getThreshold()
+{
+	return threshold.getTargetValue();
+}

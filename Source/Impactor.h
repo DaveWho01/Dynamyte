@@ -19,6 +19,7 @@ public:
 
     void processBlock(AudioBuffer<float>& mainBuffer, AudioBuffer<float>& scBuffer, const int numSamplesToProcess);
     void parameterChanged(const String paramID, float newValue);
+    float getThreshold();
 
 private:
 

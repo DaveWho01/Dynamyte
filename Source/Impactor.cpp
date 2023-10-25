@@ -83,3 +83,8 @@ void Impactor::parameterChanged(const String paramID, float newValue)
     if (paramID == "DryWet")
         dryWet.setDryWetRatio(newValue);
 }
+
+float Impactor::getThreshold()
+{
+    return gainComputer.getThreshold();
+}

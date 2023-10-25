@@ -32,7 +32,6 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
       presetManager(vts, p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-
     //[/Constructor_pre]
 
     spectrumVisualizer.reset (new FFTperformer (p.getSampleRate()));
@@ -386,7 +385,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     addAndMakeVisible (undoBtn.get());
     undoBtn->setName ("undoBtn");
 
-    undoBtn->setBounds (316, 14, 33, 33);
+    undoBtn->setBounds (321, 14, 33, 33);
 
     redoBtn.reset (new IconButtons ("redoBTN", IconsPathData::redoIconPathData, sizeof(IconsPathData::redoIconPathData), 50, 50
                                     ));
@@ -421,7 +420,7 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     genBypass->setButtonText (juce::String());
     genBypass->addListener (this);
 
-    genBypass->setBounds (259, 10, 25, 25);
+    genBypass->setBounds (262, 10, 25, 25);
 
 
     //[UserPreSize]
@@ -546,7 +545,8 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     currentPresetLabel->setText(presetManager.getCurrentPreset());
 
     // spectrum
-    spectrumVisualizer->connectToProcessor(p.bufferForFFT, p.beenCopied, p.lowCrossoverFreq, p.highCrossoverFreq);
+    spectrumVisualizer->connectToProcessor(p.bufferForFFT, p.beenCopied, p.lowCrossoverFreq, p.highCrossoverFreq,
+        p.band1Threshold, p.band2Threshold, p.band3Threshold);
 
     this->setLookAndFeel(&dynamyteTheme);
 
@@ -1210,11 +1210,11 @@ void PluginEditor::paint (juce::Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             434.0f - 445.0f + x,
-                                             30.0f - 13.0f + y,
+                                             464.0f - 445.0f + x,
+                                             32.0f - 13.0f + y,
                                              fillColour2,
-                                             451.0f - 445.0f + x,
-                                             13.0f - 13.0f + y,
+                                             480.0f - 445.0f + x,
+                                             16.0f - 13.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1244,11 +1244,11 @@ void PluginEditor::paint (juce::Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             394.0f - 405.0f + x,
-                                             30.0f - 13.0f + y,
+                                             424.0f - 405.0f + x,
+                                             32.0f - 13.0f + y,
                                              fillColour2,
-                                             411.0f - 405.0f + x,
-                                             13.0f - 13.0f + y,
+                                             440.0f - 405.0f + x,
+                                             16.0f - 13.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1257,17 +1257,17 @@ void PluginEditor::paint (juce::Graphics& g)
     }
 
     {
-        int x = 315, y = 13, width = 35, height = 35;
+        int x = 320, y = 13, width = 35, height = 35;
         juce::Colour fillColour1 = juce::Colour (0xff48468c), fillColour2 = juce::Colour (0xff252453);
         juce::Colour strokeColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             277.0f - 315.0f + x,
-                                             30.0f - 13.0f + y,
+                                             336.0f - 320.0f + x,
+                                             32.0f - 13.0f + y,
                                              fillColour2,
-                                             293.0f - 315.0f + x,
-                                             14.0f - 13.0f + y,
+                                             352.0f - 320.0f + x,
+                                             16.0f - 13.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1282,11 +1282,11 @@ void PluginEditor::paint (juce::Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setGradientFill (juce::ColourGradient (fillColour1,
-                                             322.0f - 360.0f + x,
-                                             30.0f - 13.0f + y,
+                                             376.0f - 360.0f + x,
+                                             32.0f - 13.0f + y,
                                              fillColour2,
-                                             338.0f - 360.0f + x,
-                                             14.0f - 13.0f + y,
+                                             392.0f - 360.0f + x,
+                                             16.0f - 13.0f + y,
                                              true));
         g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
@@ -1408,7 +1408,7 @@ void PluginEditor::paint (juce::Graphics& g)
     }
 
     {
-        int x = 247, y = 28, width = 50, height = 30;
+        int x = 250, y = 28, width = 50, height = 30;
         juce::String text (TRANS("BYPASS"));
         juce::Colour fillColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -1590,31 +1590,100 @@ void PluginEditor::buttonClicked (juce::Button* buttonThatWasClicked)
     if (buttonThatWasClicked == b1_mute.get())
     {
         //[UserButtonCode_b1_mute] -- add your button handler code here..
+        
         //[/UserButtonCode_b1_mute]
     }
     else if (buttonThatWasClicked == b1_bypass.get())
     {
         //[UserButtonCode_b1_bypass] -- add your button handler code here..
+        if (b1_bypass->getToggleState())
+        {
+            b1_threshold->setAlpha(HIDDEN);
+            b1_ratio->setAlpha(HIDDEN);
+            b1_attack->setAlpha(HIDDEN);
+            b1_release->setAlpha(HIDDEN);
+            b1_knee->setAlpha(HIDDEN);
+            b1_makeupGain->setAlpha(HIDDEN);
+            b1_dryWet->setAlpha(HIDDEN);
+            b1_inputGain->setAlpha(HIDDEN);
+        }
+        else
+        {
+            b1_threshold->setAlpha(VISIBLE);
+            b1_ratio->setAlpha(VISIBLE);
+            b1_attack->setAlpha(VISIBLE);
+            b1_release->setAlpha(VISIBLE);
+            b1_knee->setAlpha(VISIBLE);
+            b1_makeupGain->setAlpha(VISIBLE);
+            b1_dryWet->setAlpha(VISIBLE);
+            b1_inputGain->setAlpha(VISIBLE);
+        }
         //[/UserButtonCode_b1_bypass]
     }
     else if (buttonThatWasClicked == b2_mute.get())
     {
         //[UserButtonCode_b2_mute] -- add your button handler code here..
+        
         //[/UserButtonCode_b2_mute]
     }
     else if (buttonThatWasClicked == b2_bypass.get())
     {
         //[UserButtonCode_b2_bypass] -- add your button handler code here..
+        if (b2_bypass->getToggleState())
+        {
+            b2_threshold->setAlpha(HIDDEN);
+            b2_ratio->setAlpha(HIDDEN);
+            b2_attack->setAlpha(HIDDEN);
+            b2_release->setAlpha(HIDDEN);
+            b2_knee->setAlpha(HIDDEN);
+            b2_makeupGain->setAlpha(HIDDEN);
+            b2_dryWet->setAlpha(HIDDEN);
+            b2_inputGain->setAlpha(HIDDEN);
+        }
+        else
+        {
+            b2_threshold->setAlpha(VISIBLE);
+            b2_ratio->setAlpha(VISIBLE);
+            b2_attack->setAlpha(VISIBLE);
+            b2_release->setAlpha(VISIBLE);
+            b2_knee->setAlpha(VISIBLE);
+            b2_makeupGain->setAlpha(VISIBLE);
+            b2_dryWet->setAlpha(VISIBLE);
+            b2_inputGain->setAlpha(VISIBLE);
+        }
         //[/UserButtonCode_b2_bypass]
     }
     else if (buttonThatWasClicked == b3_mute.get())
     {
         //[UserButtonCode_b3_mute] -- add your button handler code here..
+        
         //[/UserButtonCode_b3_mute]
     }
     else if (buttonThatWasClicked == b3_bypass.get())
     {
         //[UserButtonCode_b3_bypass] -- add your button handler code here..
+        if (b3_bypass->getToggleState())
+        {
+            b3_threshold->setAlpha(HIDDEN);
+            b3_ratio->setAlpha(HIDDEN);
+            b3_attack->setAlpha(HIDDEN);
+            b3_release->setAlpha(HIDDEN);
+            b3_knee->setAlpha(HIDDEN);
+            b3_makeupGain->setAlpha(HIDDEN);
+            b3_dryWet->setAlpha(HIDDEN);
+            b3_inputGain->setAlpha(HIDDEN);
+        }
+        else
+        {
+            b3_threshold->setAlpha(VISIBLE);
+            b3_ratio->setAlpha(VISIBLE);
+            b3_attack->setAlpha(VISIBLE);
+            b3_release->setAlpha(VISIBLE);
+            b3_knee->setAlpha(VISIBLE);
+            b3_makeupGain->setAlpha(VISIBLE);
+            b3_dryWet->setAlpha(VISIBLE);
+            b3_inputGain->setAlpha(VISIBLE);
+        }
         //[/UserButtonCode_b3_bypass]
     }
     else if (buttonThatWasClicked == genBypass.get())
@@ -1809,15 +1878,15 @@ BEGIN_JUCER_METADATA
     <TEXT pos="10 287 115 30" fill="solid: ffffffff" hasStroke="0" text="MID - HIGH"
           fontname="Microsoft YaHei" fontsize="17.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <RECT pos="445 13 35 35" fill=" radial: 434 30, 451 13, 0=ff48468c, 1=ff252453"
+    <RECT pos="445 13 35 35" fill=" radial: 464 32, 480 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <RECT pos="130 55 520 280" fill="linear: 390 230, 390 -300, 0=ff0d0d1b, 1=a9ffffff"
           hasStroke="0"/>
-    <RECT pos="405 13 35 35" fill=" radial: 394 30, 411 13, 0=ff48468c, 1=ff252453"
+    <RECT pos="405 13 35 35" fill=" radial: 424 32, 440 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="315 13 35 35" fill=" radial: 277 30, 293 14, 0=ff48468c, 1=ff252453"
+    <RECT pos="320 13 35 35" fill=" radial: 336 32, 352 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
-    <RECT pos="360 13 35 35" fill=" radial: 322 30, 338 14, 0=ff48468c, 1=ff252453"
+    <RECT pos="360 13 35 35" fill=" radial: 376 32, 392 16, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
     <RECT pos="490 13 35 35" fill=" radial: 507 30, 524 13, 0=ff48468c, 1=ff252453"
           hasStroke="1" stroke="1, mitered, butt" strokeColour="solid: ffffffff"/>
@@ -1838,7 +1907,7 @@ BEGIN_JUCER_METADATA
           strokeColour="solid: ffffffff"/>
     <RECT pos="520 340 27 11" fill="solid: a58c2a" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ffffffff"/>
-    <TEXT pos="247 28 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
+    <TEXT pos="250 28 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
   </BACKGROUND>
@@ -2011,7 +2080,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="406 14 33 33" class="IconButtons"
                     params="&quot;saveBTN&quot;, IconsPathData::saveIconPathData,sizeof(IconsPathData::saveIconPathData), 50,50&#10;"/>
   <GENERICCOMPONENT name="undoBtn" id="16dad68d7b3a4fc6" memberName="undoBtn" virtualName=""
-                    explicitFocusOrder="0" pos="316 14 33 33" class="IconButtons"
+                    explicitFocusOrder="0" pos="321 14 33 33" class="IconButtons"
                     params="&quot;undoBTN&quot;, IconsPathData::undoIconPathData, sizeof(IconsPathData::undoIconPathData) ,50, 50"/>
   <GENERICCOMPONENT name="redoBtn" id="36b84d8300cb08ff" memberName="redoBtn" virtualName=""
                     explicitFocusOrder="0" pos="361 14 33 33" class="IconButtons"
@@ -2026,7 +2095,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="736 14 33 33" class="IconButtons"
                     params="&quot;nextPresetBTN&quot;, IconsPathData::nextIconPathData,sizeof(IconsPathData::nextIconPathData), 40,40&#10;"/>
   <TOGGLEBUTTON name="genBypass" id="4e7a851e96e4163a" memberName="genBypass"
-                virtualName="" explicitFocusOrder="0" pos="259 10 25 25" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="262 10 25 25" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
 </JUCER_COMPONENT>
 

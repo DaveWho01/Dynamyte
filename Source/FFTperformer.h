@@ -16,7 +16,8 @@ public:
     ~FFTperformer();
     void drawNextFrameOfSpectrum();
     void timerCallback() override;
-    void connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq);
+    void connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq, 
+        float& band1Threshold, float& band2Threshold, float& band3Threshold);
     void copyToFFTBuffer();
     inline float logTransformInRange0to1(const float between0and1);
     void paint(Graphics& g);
@@ -49,6 +50,9 @@ private:
 
     // Xover freqs
     float *lowXoverFreq, *highXoverFreq;
+
+    // Thresholds
+    float *thr1, *thr2, *thr3;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FFTperformer)
 

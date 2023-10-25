@@ -8,6 +8,12 @@ FFTperformer::FFTperformer(double sampleRate)
     fftData.setSize(1, 2 * fftSize);
     fftData.clear();
 
+    thr1 = nullptr;
+    thr2 = nullptr;
+    thr3 = nullptr;
+
+    
+
     alpha = exp(-1.0f / (FPS * RELEASE_TIME));
 }
 
@@ -46,12 +52,16 @@ void FFTperformer::timerCallback()
         repaint();
 }
 
-void FFTperformer::connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq)
+void FFTperformer::connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, 
+    float& highCrossoverFreq, float& band1Threshold, float& band2Threshold, float& band3Threshold)
 {
     processorData = &buffer;
     bufferCopied = &FFTmutex;
     lowXoverFreq = &lowCrossoverFreq;
     highXoverFreq = &highCrossoverFreq;
+    thr1 = &band1Threshold;
+    thr2 = &band2Threshold;
+    thr3 = &band3Threshold;
 }
 
 void FFTperformer::copyToFFTBuffer()
@@ -166,13 +176,22 @@ void FFTperformer::paintGrid(Graphics& g)
     }
 
     // draw xover freqs
-
     double proportion = *lowXoverFreq / (sr * 0.5);
-    int xPos = logTransformInRange0to1(proportion) * width;
-    g.drawLine(xPos, 0.0f, xPos, height, 2.0f);
-    //g.drawVerticalLine(xPos, 0.0f, height);
+    int xPos_LowMid = logTransformInRange0to1(proportion) * width;
+    g.drawLine(xPos_LowMid, 0.0f, xPos_LowMid, height, 2.0f);
 
     proportion = *highXoverFreq / (sr * 0.5);
-    xPos = logTransformInRange0to1(proportion) * width;
-    g.drawLine(xPos, 0.0f, xPos, height, 2.0f);
+    int xPos_MidHigh = logTransformInRange0to1(proportion) * width;
+    g.drawLine(xPos_MidHigh, 0.0f, xPos_MidHigh, height, 2.0f);
+
+    //draw thresholds
+    auto yThreshold = jmap(*thr1, -60.0f, 0.0f, height * 0.6f, 0.0f);
+    g.drawHorizontalLine(yThreshold, 0, xPos_LowMid);
+
+    yThreshold = jmap(*thr2, -60.0f, 0.0f, height * 0.6f, 0.0f);
+    g.drawHorizontalLine(yThreshold, xPos_LowMid, xPos_MidHigh);
+
+    yThreshold = jmap(*thr3, -60.0f, 0.0f, height * 0.6f, 0.0f);
+    g.drawHorizontalLine(yThreshold, xPos_MidHigh, getWidth());
+
 }
