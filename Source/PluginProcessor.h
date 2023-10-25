@@ -54,8 +54,8 @@ public:
     void toggleBandBypass(bool newValue, int nBand);
     double getSampleRate();
 
-    CircularBuffer bufferForFFT;
-    Atomic<bool> beenCopied;
+    CircularBuffer bufferForFFToutput, bufferForFFTinput;
+    Atomic<bool> outBeenCopied, inBeenCopied;
     float lowCrossoverFreq, highCrossoverFreq;
     float band1Threshold, band2Threshold, band3Threshold;
 

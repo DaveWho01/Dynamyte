@@ -1,18 +1,21 @@
 #include "FFTperformer.h"
 
 FFTperformer::FFTperformer(double sampleRate)
-    : forwardFFT(fftOrder), window(fftSize, dsp::WindowingFunction<float>::hann), sr(sampleRate)
+    : forwardFFTOut(fftOrder), forwardFFTIn(fftOrder), 
+    windowOut(fftSize, dsp::WindowingFunction<float>::hann), windowIn(fftSize, dsp::WindowingFunction<float>::hann),
+    sr(sampleRate)
 {
-    processorData = nullptr;
+    processorDataOut = nullptr;
+    processorDataIn = nullptr;
     startTimerHz(FPS);
-    fftData.setSize(1, 2 * fftSize);
-    fftData.clear();
+    fftDataOut.setSize(1, 2 * fftSize);
+    fftDataIn.setSize(1, 2 * fftSize);
+    fftDataOut.clear();
+    fftDataIn.clear();
 
     thr1 = nullptr;
     thr2 = nullptr;
-    thr3 = nullptr;
-
-    
+    thr3 = nullptr;    
 
     alpha = exp(-1.0f / (FPS * RELEASE_TIME));
 }
@@ -24,9 +27,11 @@ FFTperformer::~FFTperformer()
 
 void FFTperformer::drawNextFrameOfSpectrum()
 {
-    window.multiplyWithWindowingTable(fftData.getWritePointer(0), fftSize);
+    windowOut.multiplyWithWindowingTable(fftDataOut.getWritePointer(0), fftSize);
+    windowIn.multiplyWithWindowingTable(fftDataIn.getWritePointer(0), fftSize);
 
-    forwardFFT.performFrequencyOnlyForwardTransform(fftData.getWritePointer(0));
+    forwardFFTOut.performFrequencyOnlyForwardTransform(fftDataOut.getWritePointer(0));
+    forwardFFTIn.performFrequencyOnlyForwardTransform(fftDataIn.getWritePointer(0));
 
     auto mindB = -100.0f;
     auto maxdB = 0.0f;
@@ -37,11 +42,14 @@ void FFTperformer::drawNextFrameOfSpectrum()
         auto skewedProportionX = 1.0f - std::exp(std::log(1.0f - (float)i / (float)scopeSize) * 0.2f);
         auto fftDataIndex = jlimit(0, fftSize / 2, static_cast<int>(skewedProportionX * static_cast<float>(fftSize) * 0.5f));
         
-        freqBins[i] = fftDataIndex * sr / fftSize;
+        freqBinsOut[i] = fftDataIndex * sr / fftSize;
+        freqBinsIn[i] = fftDataIndex * sr / fftSize;
         
-        auto level = jmap(jlimit(mindB, maxdB, Decibels::gainToDecibels(fftData.getWritePointer(0)[fftDataIndex]) - Decibels::gainToDecibels(static_cast<float>(fftSize))), mindB, maxdB, 0.0f, 1.0f);
+        auto levelOut = jmap(jlimit(mindB, maxdB, Decibels::gainToDecibels(fftDataOut.getWritePointer(0)[fftDataIndex]) - Decibels::gainToDecibels(static_cast<float>(fftSize))), mindB, maxdB, 0.0f, 1.0f);
+        auto levelIn = jmap(jlimit(mindB, maxdB, Decibels::gainToDecibels(fftDataIn.getWritePointer(0)[fftDataIndex]) - Decibels::gainToDecibels(static_cast<float>(fftSize))), mindB, maxdB, 0.0f, 1.0f);
 
-        scopeData[i] = level;
+        scopeDataOut[i] = levelOut;
+        scopeDataIn[i] = levelIn;
     }
 }
 
@@ -52,11 +60,15 @@ void FFTperformer::timerCallback()
         repaint();
 }
 
-void FFTperformer::connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, 
-    float& highCrossoverFreq, float& band1Threshold, float& band2Threshold, float& band3Threshold)
+void FFTperformer::connectToProcessor(CircularBuffer& bufferOut, Atomic<bool>& FFTmutexOut,
+    CircularBuffer& bufferIn, Atomic<bool>& FFTmutexIn,
+    float& lowCrossoverFreq, float& highCrossoverFreq, 
+    float& band1Threshold, float& band2Threshold, float& band3Threshold)
 {
-    processorData = &buffer;
-    bufferCopied = &FFTmutex;
+    processorDataOut = &bufferOut;
+    processorDataIn = &bufferIn;
+    bufferCopiedOut = &FFTmutexOut;
+    bufferCopiedIn = &FFTmutexIn;
     lowXoverFreq = &lowCrossoverFreq;
     highXoverFreq = &highCrossoverFreq;
     thr1 = &band1Threshold;
@@ -66,11 +78,17 @@ void FFTperformer::connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTm
 
 void FFTperformer::copyToFFTBuffer()
 {
-    if (bufferCopied->get())
+    if (bufferCopiedOut->get())
     {
-        bufferCopied->set(false);
-        processorData->getData(0, fftData, 2048);
-        bufferCopied->set(true);
+        bufferCopiedOut->set(false);
+        processorDataOut->getData(0, fftDataOut, 2048);
+        bufferCopiedOut->set(true);
+    }
+    if (bufferCopiedIn->get())
+    {
+        bufferCopiedIn->set(false);
+        processorDataIn->getData(0, fftDataIn, 2048);
+        bufferCopiedIn->set(true);
     }
 }
 
@@ -85,7 +103,7 @@ void FFTperformer::paint(Graphics& g)
 {
     paintGrid(g);
 
-    Path area, line;
+    Path areaIn, areaOut, line;
 
     auto width = getWidth() * 0.95f;
     auto height = getHeight() * 0.95f;
@@ -97,37 +115,43 @@ void FFTperformer::paint(Graphics& g)
 
     for (int i = 0; i < scopeSize; ++i)
     {
-        oldScopeData[i] *= alpha;
-        scopeData[i] = jmax(scopeData[i],oldScopeData[i]);
-        oldScopeData[i] = scopeData[i];
+        oldScopeDataOut[i] *= alpha;
+        scopeDataOut[i] = jmax(scopeDataOut[i],oldScopeDataOut[i]);
+        oldScopeDataOut[i] = scopeDataOut[i];
+
+        oldScopeDataIn[i] *= alpha;
+        scopeDataIn[i] = jmax(scopeDataIn[i], oldScopeDataIn[i]);
+        oldScopeDataIn[i] = scopeDataIn[i];
     }
 
     Point<float> initP(0, height);
-    area.startNewSubPath(initP);
-    area.lineTo(0, height);
-    for (int i = 4; i < scopeSize; i+=6)
-    {   
-        area.cubicTo(
-            //const double proportion = frequenciesToPlot[i] / (sr * 0.5);
-            //int xPos = logTransformInRange0to1(proportion) * width;
-            logTransformInRange0to1(freqBins[i - 4] / (sr * 0.5)) * width, jmap(scopeData[i - 4], 0.0f, 1.0f, (float)height, 0.0f),
-            logTransformInRange0to1(freqBins[i - 2] / (sr * 0.5)) * width, jmap(scopeData[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
-            logTransformInRange0to1(freqBins[i] / (sr * 0.5)) * width, jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)
+    areaOut.startNewSubPath(initP);
+    areaOut.lineTo(0, height);
+    areaIn.startNewSubPath(initP);
+    areaIn.lineTo(0, height);
+    for (int i = 4; i < scopeSize; i += 6)
+    {
+        areaOut.cubicTo(
+            logTransformInRange0to1(freqBinsOut[i - 4] / (sr * 0.5)) * width, jmap(scopeDataOut[i - 4], 0.0f, 1.0f, (float)height, 0.0f),
+            logTransformInRange0to1(freqBinsOut[i - 2] / (sr * 0.5)) * width, jmap(scopeDataOut[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
+            logTransformInRange0to1(freqBinsOut[i] / (sr * 0.5)) * width, jmap(scopeDataOut[i], 0.0f, 1.0f, (float)height, 0.0f)
         );
-        /*
-        area.cubicTo(
-            (float)jmap(i - 4, 0, scopeSize - 1, 0, width), jmap(scopeData[i - 4], 0.0f, 1.0f, (float)height, 0.0f),
-            (float)jmap(i - 2, 0, scopeSize - 1, 0, width), jmap(scopeData[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
-            (float)jmap(i, 0, scopeSize - 1, 0, width), jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)
+        areaIn.cubicTo(
+            logTransformInRange0to1(freqBinsIn[i - 4] / (sr * 0.5)) * width, jmap(scopeDataIn[i - 4], 0.0f, 1.0f, (float)height, 0.0f),
+            logTransformInRange0to1(freqBinsIn[i - 2] / (sr * 0.5)) * width, jmap(scopeDataIn[i - 2], 0.0f, 1.0f, (float)height, 0.0f),
+            logTransformInRange0to1(freqBinsIn[i] / (sr * 0.5)) * width, jmap(scopeDataIn[i], 0.0f, 1.0f, (float)height, 0.0f)
         );
-        */
     }
-    area.lineTo(width, height);
-    line = area;
-    area.lineTo(0, height);
+    areaOut.lineTo(width, height);
+    areaIn.lineTo(width, height);
+    line = areaOut;
+    areaOut.lineTo(0, height);
+    areaIn.lineTo(0, height);
     g.setColour(Colour::fromRGBA(167, 166, 195, 255));
+    g.setOpacity(0.4f);
+    g.fillPath(areaOut);
     g.setOpacity(0.3f);
-    g.fillPath(area);
+    g.fillPath(areaIn);
     g.setColour(Colours::white);
     g.setOpacity(1.0f);
     g.strokePath(line, PathStrokeType(1.0f));

@@ -23,7 +23,8 @@ DynamyteAudioProcessor::DynamyteAudioProcessor()
     band1Bypass = false;
     band2Bypass = false;
     band3Bypass = false;
-    beenCopied = true;
+    outBeenCopied = true;
+    inBeenCopied = true;
     lowCrossoverFreq = bandSplitter.getLowCrossoverFreq();
     highCrossoverFreq = bandSplitter.getHighCrossoverFreq();
     band1Threshold = 0.0f;
@@ -120,7 +121,8 @@ void DynamyteAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     generalInputGain.prepareToPlay(sampleRate);
     generalOutputGain.prepareToPlay(sampleRate);
 
-    bufferForFFT.prepareToPlay(sampleRate, 2048, numOutputCh);
+    bufferForFFTinput.prepareToPlay(sampleRate, 2048, numOutputCh);
+    bufferForFFToutput.prepareToPlay(sampleRate, 2048, numOutputCh);
 }
 
 void DynamyteAudioProcessor::releaseResources()
@@ -171,6 +173,12 @@ void DynamyteAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     if (!bypass)
     {
         generalInputGain.processBlock(buffer, samplesToProcess);
+
+        // spectrum
+        if (inBeenCopied.get()) // se nella classe fftPerformer è stato copiato il buffer
+        {
+            bufferForFFTinput.pushNextBlock(mainBuffer);
+        }
         
         bandSplitter.splitSignal(mainBuffer, firstBandBuffer, secondBandBuffer, thirdBandBuffer);
 
@@ -196,13 +204,13 @@ void DynamyteAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         bandSplitter.mix(mainBuffer, firstBandBuffer, secondBandBuffer, thirdBandBuffer);
 
         generalOutputGain.processBlock(mainBuffer, samplesToProcess);
+        // spectrum
+        if (outBeenCopied.get()) // se nella classe fftPerformer è stato copiato il buffer
+        {
+            bufferForFFToutput.pushNextBlock(mainBuffer);
+        }
     }
     
-    // spectrum
-    if (beenCopied.get()) // se nella classe fftPerformer è stato copiato il buffer
-    {
-        bufferForFFT.pushNextBlock(mainBuffer);
-    }
 
 
 }

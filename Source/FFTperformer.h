@@ -16,7 +16,9 @@ public:
     ~FFTperformer();
     void drawNextFrameOfSpectrum();
     void timerCallback() override;
-    void connectToProcessor(CircularBuffer& buffer, Atomic<bool>& FFTmutex, float& lowCrossoverFreq, float& highCrossoverFreq, 
+    void connectToProcessor(CircularBuffer& bufferOut, Atomic<bool>& FFTmutexOut, 
+        CircularBuffer& bufferIn, Atomic<bool>& FFTmutexIn,
+        float& lowCrossoverFreq, float& highCrossoverFreq, 
         float& band1Threshold, float& band2Threshold, float& band3Threshold);
     void copyToFFTBuffer();
     inline float logTransformInRange0to1(const float between0and1);
@@ -25,21 +27,31 @@ public:
 
 private:
 
-    juce::dsp::FFT forwardFFT;                      
-    juce::dsp::WindowingFunction<float> window;     
+    // FFTs
+    juce::dsp::FFT forwardFFTOut;                      
+    juce::dsp::FFT forwardFFTIn;                      
+    juce::dsp::WindowingFunction<float> windowOut;     
+    juce::dsp::WindowingFunction<float> windowIn;
 
     float fifo[fftSize];
-    AudioBuffer<float> fftData;
+    AudioBuffer<float> fftDataOut;
+    AudioBuffer<float> fftDataIn;
     int fifoIndex = 0;
     bool nextFFTBlockReady = false;
-    float scopeData[scopeSize] = { 0 };
-    float freqBins[scopeSize] = { 0 };
 
-    CircularBuffer* processorData;
-    Atomic<bool>* bufferCopied;
+    float scopeDataOut[scopeSize] = { 0 };
+    float freqBinsOut[scopeSize] = { 0 };
+    float scopeDataIn[scopeSize] = { 0 };
+    float freqBinsIn[scopeSize] = { 0 };
+
+    CircularBuffer* processorDataOut;
+    CircularBuffer* processorDataIn;
+    Atomic<bool>* bufferCopiedOut;
+    Atomic<bool>* bufferCopiedIn;
 
     float alpha;
-    float oldScopeData[scopeSize];
+    float oldScopeDataOut[scopeSize];
+    float oldScopeDataIn[scopeSize];
 
     // Grid
     double sr;

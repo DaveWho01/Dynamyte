@@ -545,7 +545,9 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     currentPresetLabel->setText(presetManager.getCurrentPreset());
 
     // spectrum
-    spectrumVisualizer->connectToProcessor(p.bufferForFFT, p.beenCopied, p.lowCrossoverFreq, p.highCrossoverFreq,
+    spectrumVisualizer->connectToProcessor(p.bufferForFFToutput, p.outBeenCopied,
+        p.bufferForFFTinput, p.inBeenCopied,
+        p.lowCrossoverFreq, p.highCrossoverFreq,
         p.band1Threshold, p.band2Threshold, p.band3Threshold);
 
     this->setLookAndFeel(&dynamyteTheme);
@@ -1590,105 +1592,215 @@ void PluginEditor::buttonClicked (juce::Button* buttonThatWasClicked)
     if (buttonThatWasClicked == b1_mute.get())
     {
         //[UserButtonCode_b1_mute] -- add your button handler code here..
-        
+
         //[/UserButtonCode_b1_mute]
     }
     else if (buttonThatWasClicked == b1_bypass.get())
     {
         //[UserButtonCode_b1_bypass] -- add your button handler code here..
-        if (b1_bypass->getToggleState())
+        if (!genBypass->getToggleState())
         {
-            b1_threshold->setAlpha(HIDDEN);
-            b1_ratio->setAlpha(HIDDEN);
-            b1_attack->setAlpha(HIDDEN);
-            b1_release->setAlpha(HIDDEN);
-            b1_knee->setAlpha(HIDDEN);
-            b1_makeupGain->setAlpha(HIDDEN);
-            b1_dryWet->setAlpha(HIDDEN);
-            b1_inputGain->setAlpha(HIDDEN);
-        }
-        else
-        {
-            b1_threshold->setAlpha(VISIBLE);
-            b1_ratio->setAlpha(VISIBLE);
-            b1_attack->setAlpha(VISIBLE);
-            b1_release->setAlpha(VISIBLE);
-            b1_knee->setAlpha(VISIBLE);
-            b1_makeupGain->setAlpha(VISIBLE);
-            b1_dryWet->setAlpha(VISIBLE);
-            b1_inputGain->setAlpha(VISIBLE);
+            if (b1_bypass->getToggleState())
+            {
+                b1_threshold->setAlpha(HIDDEN);
+                b1_ratio->setAlpha(HIDDEN);
+                b1_attack->setAlpha(HIDDEN);
+                b1_release->setAlpha(HIDDEN);
+                b1_knee->setAlpha(HIDDEN);
+                b1_makeupGain->setAlpha(HIDDEN);
+                b1_dryWet->setAlpha(HIDDEN);
+                b1_inputGain->setAlpha(HIDDEN);
+            }
+            else
+            {
+                b1_threshold->setAlpha(VISIBLE);
+                b1_ratio->setAlpha(VISIBLE);
+                b1_attack->setAlpha(VISIBLE);
+                b1_release->setAlpha(VISIBLE);
+                b1_knee->setAlpha(VISIBLE);
+                b1_makeupGain->setAlpha(VISIBLE);
+                b1_dryWet->setAlpha(VISIBLE);
+                b1_inputGain->setAlpha(VISIBLE);
+                b1_bypass->setAlpha(VISIBLE);
+            }
         }
         //[/UserButtonCode_b1_bypass]
     }
     else if (buttonThatWasClicked == b2_mute.get())
     {
         //[UserButtonCode_b2_mute] -- add your button handler code here..
-        
+
         //[/UserButtonCode_b2_mute]
     }
     else if (buttonThatWasClicked == b2_bypass.get())
     {
         //[UserButtonCode_b2_bypass] -- add your button handler code here..
-        if (b2_bypass->getToggleState())
+        if (!genBypass->getToggleState())
         {
-            b2_threshold->setAlpha(HIDDEN);
-            b2_ratio->setAlpha(HIDDEN);
-            b2_attack->setAlpha(HIDDEN);
-            b2_release->setAlpha(HIDDEN);
-            b2_knee->setAlpha(HIDDEN);
-            b2_makeupGain->setAlpha(HIDDEN);
-            b2_dryWet->setAlpha(HIDDEN);
-            b2_inputGain->setAlpha(HIDDEN);
-        }
-        else
-        {
-            b2_threshold->setAlpha(VISIBLE);
-            b2_ratio->setAlpha(VISIBLE);
-            b2_attack->setAlpha(VISIBLE);
-            b2_release->setAlpha(VISIBLE);
-            b2_knee->setAlpha(VISIBLE);
-            b2_makeupGain->setAlpha(VISIBLE);
-            b2_dryWet->setAlpha(VISIBLE);
-            b2_inputGain->setAlpha(VISIBLE);
+            if (b2_bypass->getToggleState())
+            {
+                b2_threshold->setAlpha(HIDDEN);
+                b2_ratio->setAlpha(HIDDEN);
+                b2_attack->setAlpha(HIDDEN);
+                b2_release->setAlpha(HIDDEN);
+                b2_knee->setAlpha(HIDDEN);
+                b2_makeupGain->setAlpha(HIDDEN);
+                b2_dryWet->setAlpha(HIDDEN);
+                b2_inputGain->setAlpha(HIDDEN);
+            }
+            else
+            {
+                b2_threshold->setAlpha(VISIBLE);
+                b2_ratio->setAlpha(VISIBLE);
+                b2_attack->setAlpha(VISIBLE);
+                b2_release->setAlpha(VISIBLE);
+                b2_knee->setAlpha(VISIBLE);
+                b2_makeupGain->setAlpha(VISIBLE);
+                b2_dryWet->setAlpha(VISIBLE);
+                b2_inputGain->setAlpha(VISIBLE);
+                b2_bypass->setAlpha(VISIBLE);
+            }
         }
         //[/UserButtonCode_b2_bypass]
     }
     else if (buttonThatWasClicked == b3_mute.get())
     {
         //[UserButtonCode_b3_mute] -- add your button handler code here..
-        
+
         //[/UserButtonCode_b3_mute]
     }
     else if (buttonThatWasClicked == b3_bypass.get())
     {
         //[UserButtonCode_b3_bypass] -- add your button handler code here..
-        if (b3_bypass->getToggleState())
+        if (!genBypass->getToggleState())
         {
-            b3_threshold->setAlpha(HIDDEN);
-            b3_ratio->setAlpha(HIDDEN);
-            b3_attack->setAlpha(HIDDEN);
-            b3_release->setAlpha(HIDDEN);
-            b3_knee->setAlpha(HIDDEN);
-            b3_makeupGain->setAlpha(HIDDEN);
-            b3_dryWet->setAlpha(HIDDEN);
-            b3_inputGain->setAlpha(HIDDEN);
-        }
-        else
-        {
-            b3_threshold->setAlpha(VISIBLE);
-            b3_ratio->setAlpha(VISIBLE);
-            b3_attack->setAlpha(VISIBLE);
-            b3_release->setAlpha(VISIBLE);
-            b3_knee->setAlpha(VISIBLE);
-            b3_makeupGain->setAlpha(VISIBLE);
-            b3_dryWet->setAlpha(VISIBLE);
-            b3_inputGain->setAlpha(VISIBLE);
+            if (b3_bypass->getToggleState())
+            {
+                b3_threshold->setAlpha(HIDDEN);
+                b3_ratio->setAlpha(HIDDEN);
+                b3_attack->setAlpha(HIDDEN);
+                b3_release->setAlpha(HIDDEN);
+                b3_knee->setAlpha(HIDDEN);
+                b3_makeupGain->setAlpha(HIDDEN);
+                b3_dryWet->setAlpha(HIDDEN);
+                b3_inputGain->setAlpha(HIDDEN);
+            }
+            else
+            {
+                b3_threshold->setAlpha(VISIBLE);
+                b3_ratio->setAlpha(VISIBLE);
+                b3_attack->setAlpha(VISIBLE);
+                b3_release->setAlpha(VISIBLE);
+                b3_knee->setAlpha(VISIBLE);
+                b3_makeupGain->setAlpha(VISIBLE);
+                b3_dryWet->setAlpha(VISIBLE);
+                b3_inputGain->setAlpha(VISIBLE);
+                b3_bypass->setAlpha(VISIBLE);
+            }
         }
         //[/UserButtonCode_b3_bypass]
     }
     else if (buttonThatWasClicked == genBypass.get())
     {
         //[UserButtonCode_genBypass] -- add your button handler code here..
+        if (genBypass->getToggleState())
+        {
+            if (!b1_bypass->getToggleState())
+            {
+                b1_threshold->setAlpha(HIDDEN);
+                b1_ratio->setAlpha(HIDDEN);
+                b1_attack->setAlpha(HIDDEN);
+                b1_release->setAlpha(HIDDEN);
+                b1_knee->setAlpha(HIDDEN);
+                b1_makeupGain->setAlpha(HIDDEN);
+                b1_dryWet->setAlpha(HIDDEN);
+                b1_inputGain->setAlpha(HIDDEN);
+                /*b1_mute->setAlpha(HIDDEN);
+                b1_bypass->setAlpha(HIDDEN);*/
+            }
+            if (!b2_bypass->getToggleState())
+            {
+                b2_threshold->setAlpha(HIDDEN);
+                b2_ratio->setAlpha(HIDDEN);
+                b2_attack->setAlpha(HIDDEN);
+                b2_release->setAlpha(HIDDEN);
+                b2_knee->setAlpha(HIDDEN);
+                b2_makeupGain->setAlpha(HIDDEN);
+                b2_dryWet->setAlpha(HIDDEN);
+                b2_inputGain->setAlpha(HIDDEN);
+                /*b2_mute->setAlpha(HIDDEN);
+                b2_bypass->setAlpha(HIDDEN);*/
+            }
+            if (!b3_bypass->getToggleState())
+            {
+                b3_threshold->setAlpha(HIDDEN);
+                b3_ratio->setAlpha(HIDDEN);
+                b3_attack->setAlpha(HIDDEN);
+                b3_release->setAlpha(HIDDEN);
+                b3_knee->setAlpha(HIDDEN);
+                b3_makeupGain->setAlpha(HIDDEN);
+                b3_dryWet->setAlpha(HIDDEN);
+                b3_inputGain->setAlpha(HIDDEN);
+                /*b3_mute->setAlpha(HIDDEN);
+                b3_bypass->setAlpha(HIDDEN);*/
+            }
+            lowFreqSlider->setAlpha(HIDDEN);
+            highFreqSlider->setAlpha(HIDDEN);
+            inputGainSlider->setAlpha(HIDDEN);
+            outputGainSlider->setAlpha(HIDDEN);
+
+
+            spectrumVisualizer->setAlpha(HIDDEN);
+        }
+        else
+        {
+            if (!b1_bypass->getToggleState())
+            {
+                b1_threshold->setAlpha(VISIBLE);
+                b1_ratio->setAlpha(VISIBLE);
+                b1_attack->setAlpha(VISIBLE);
+                b1_release->setAlpha(VISIBLE);
+                b1_knee->setAlpha(VISIBLE);
+                b1_makeupGain->setAlpha(VISIBLE);
+                b1_dryWet->setAlpha(VISIBLE);
+                b1_inputGain->setAlpha(VISIBLE);
+                /*b1_mute->setAlpha(VISIBLE);
+                b1_bypass->setAlpha(VISIBLE);*/
+            }
+            if (!b2_bypass->getToggleState())
+            {
+                b2_threshold->setAlpha(VISIBLE);
+                b2_ratio->setAlpha(VISIBLE);
+                b2_attack->setAlpha(VISIBLE);
+                b2_release->setAlpha(VISIBLE);
+                b2_knee->setAlpha(VISIBLE);
+                b2_makeupGain->setAlpha(VISIBLE);
+                b2_dryWet->setAlpha(VISIBLE);
+                b2_inputGain->setAlpha(VISIBLE);
+                /*b2_mute->setAlpha(VISIBLE);
+                b2_bypass->setAlpha(VISIBLE);*/
+            }
+            if (!b3_bypass->getToggleState())
+            {
+                b3_threshold->setAlpha(VISIBLE);
+                b3_ratio->setAlpha(VISIBLE);
+                b3_attack->setAlpha(VISIBLE);
+                b3_release->setAlpha(VISIBLE);
+                b3_knee->setAlpha(VISIBLE);
+                b3_makeupGain->setAlpha(VISIBLE);
+                b3_dryWet->setAlpha(VISIBLE);
+                b3_inputGain->setAlpha(VISIBLE);
+                /*b3_mute->setAlpha(VISIBLE);
+                b3_bypass->setAlpha(VISIBLE);*/
+            }
+            lowFreqSlider->setAlpha(VISIBLE);
+            highFreqSlider->setAlpha(VISIBLE);
+            inputGainSlider->setAlpha(VISIBLE);
+            outputGainSlider->setAlpha(VISIBLE);
+
+
+            spectrumVisualizer->setAlpha(VISIBLE);
+        }
         //[/UserButtonCode_genBypass]
     }
 
