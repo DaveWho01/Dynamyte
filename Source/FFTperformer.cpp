@@ -1,9 +1,8 @@
 #include "FFTperformer.h"
 
-FFTperformer::FFTperformer(double sampleRate)
+FFTperformer::FFTperformer()
     : forwardFFTOut(fftOrder), forwardFFTIn(fftOrder), 
-    windowOut(fftSize, dsp::WindowingFunction<float>::hann), windowIn(fftSize, dsp::WindowingFunction<float>::hann),
-    sr(sampleRate)
+    windowOut(fftSize, dsp::WindowingFunction<float>::hann), windowIn(fftSize, dsp::WindowingFunction<float>::hann)
 {
     processorDataOut = nullptr;
     processorDataIn = nullptr;
@@ -218,4 +217,9 @@ void FFTperformer::paintGrid(Graphics& g)
     yThreshold = jmap(*thr3, -60.0f, 0.0f, height * 0.6f, 0.0f);
     g.drawHorizontalLine(yThreshold, xPos_MidHigh, getWidth());
 
+}
+
+void FFTperformer::setSampleRate(double processorSampleRate)
+{
+    sr = processorSampleRate;
 }

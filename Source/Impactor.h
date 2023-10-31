@@ -23,7 +23,6 @@ public:
 
 private:
 
-
     AudioBuffer<float> auxBuffer;
 
     GainStage inputGain;

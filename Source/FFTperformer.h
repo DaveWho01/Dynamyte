@@ -12,7 +12,7 @@ class FFTperformer : public Component, public Timer
 {
 public:
 	
-    FFTperformer(double sampleRate);
+    FFTperformer();
     ~FFTperformer();
     void drawNextFrameOfSpectrum();
     void timerCallback() override;
@@ -24,6 +24,7 @@ public:
     inline float logTransformInRange0to1(const float between0and1);
     void paint(Graphics& g);
     void paintGrid(Graphics& g);
+    void setSampleRate(double processorSampleRate);
 
 private:
 

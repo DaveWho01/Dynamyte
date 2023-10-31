@@ -55,7 +55,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    void setSectionOpacity(std::vector<std::unique_ptr<juce::Slider>>& slidersToHide, bool shouldHide);
+    //void setSectionOpacity(std::vector<std::unique_ptr<juce::Slider>>& slidersToHide, bool shouldHide);
     //[/UserMethods]
 
     void paint (juce::Graphics& g) override;

@@ -34,7 +34,8 @@ PluginEditor::PluginEditor (DynamyteAudioProcessor& p, AudioProcessorValueTreeSt
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    spectrumVisualizer.reset (new FFTperformer (p.getSampleRate()));
+    spectrumVisualizer.reset (new FFTperformer (
+                                                ));
     addAndMakeVisible (spectrumVisualizer.get());
     spectrumVisualizer->setName ("spectrumVisualizer");
 
@@ -666,6 +667,7 @@ PluginEditor::~PluginEditor()
 void PluginEditor::paint (juce::Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
+    spectrumVisualizer->setSampleRate(processor.getSampleRate());
     //[/UserPrePaint]
 
     g.fillAll (juce::Colour (0xff0d0d1b));
@@ -2025,7 +2027,7 @@ BEGIN_JUCER_METADATA
   </BACKGROUND>
   <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
                     virtualName="" explicitFocusOrder="0" pos="130 55 520 280" class="FFTperformer"
-                    params="p.getSampleRate()"/>
+                    params="&#10;"/>
   <SLIDER name="b1_attack" id="4a45c8fdcf5d8073" memberName="b1_attack"
           virtualName="" explicitFocusOrder="0" pos="25 441 60 60" textboxoutline="8e989b"
           min="0.0" max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
