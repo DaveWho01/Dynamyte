@@ -785,7 +785,7 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 25, y = 559, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
+        juce::String text (TRANS("IN-GAIN"));
         juce::Colour fillColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -924,7 +924,7 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 280, y = 559, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
+        juce::String text (TRANS("IN-GAIN"));
         juce::Colour fillColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1063,7 +1063,7 @@ void PluginEditor::paint (juce::Graphics& g)
 
     {
         int x = 535, y = 559, width = 60, height = 30;
-        juce::String text (TRANS("GAIN"));
+        juce::String text (TRANS("IN-GAIN"));
         juce::Colour fillColour = juce::Colours::white;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1897,7 +1897,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="185 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="25 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+    <TEXT pos="25 559 60 30" fill="solid: ffffffff" hasStroke="0" text="IN-GAIN"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
     <TEXT pos="105 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
@@ -1929,7 +1929,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="440 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="280 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+    <TEXT pos="280 559 60 30" fill="solid: ffffffff" hasStroke="0" text="IN-GAIN"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
     <TEXT pos="360 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
@@ -1961,7 +1961,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="695 483 60 30" fill="solid: ffffffff" hasStroke="0" text="KNEE"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
-    <TEXT pos="535 559 60 30" fill="solid: ffffffff" hasStroke="0" text="GAIN"
+    <TEXT pos="535 559 60 30" fill="solid: ffffffff" hasStroke="0" text="IN-GAIN"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
     <TEXT pos="615 559 60 30" fill="solid: ffffffff" hasStroke="0" text="MAKEUP"
