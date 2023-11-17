@@ -1423,6 +1423,18 @@ void PluginEditor::paint (juce::Graphics& g)
                     juce::Justification::centred, true);
     }
 
+    {
+        int x = 267, y = 585, width = 250, height = 22;
+        juce::String text (TRANS("Coded at Laboratorio di Informatica Musicale by Davide Massimo"));
+        juce::Colour fillColour = juce::Colour (0x80ffffff);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (juce::Font (9.20f, juce::Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    juce::Justification::centredLeft, true);
+    }
+
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -2024,6 +2036,9 @@ BEGIN_JUCER_METADATA
     <TEXT pos="250 28 50 30" fill="solid: ffffffff" hasStroke="0" text="BYPASS"
           fontname="Microsoft YaHei" fontsize="13.0" kerning="0.0" bold="1"
           italic="0" justification="36" typefaceStyle="Bold"/>
+    <TEXT pos="267 585 250 22" fill="solid: 80ffffff" hasStroke="0" text="Coded at Laboratorio di Informatica Musicale by Davide Massimo"
+          fontname="Default font" fontsize="9.199999999999999" kerning="0.0"
+          bold="0" italic="0" justification="33"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="spectrumVisualizer" id="5bdc961ddcccdcb1" memberName="spectrumVisualizer"
                     virtualName="" explicitFocusOrder="0" pos="130 55 520 280" class="FFTperformer"
